@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Phishing Email Example</title>
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  body{background:#f6f8fc;font-family:Arial,sans-serif;margin:0;padding:0}
+  .wrap{background:#f6f8fc;border-radius:12px;overflow:hidden;border:0.5px solid #e0e0e0}
+  .gmail-top{background:#fff;padding:8px 16px;display:flex;align-items:center;gap:12px;border-bottom:1px solid #e0e0e0}
+  .gmail-logo{font-size:20px;font-weight:700;color:#ea4335;letter-spacing:-1px}
+  .search{flex:1;background:#f1f3f4;border-radius:24px;padding:8px 16px;font-size:13px;color:#666;border:none;max-width:400px}
+  .inbox-strip{background:#fff;padding:4px 0;border-bottom:1px solid #e8eaed;display:flex}
+  .tab{padding:10px 20px;font-size:13px;color:#5f6368;cursor:pointer;border-bottom:2px solid transparent}
+  .tab.active{color:#1a73e8;border-bottom:2px solid #1a73e8;font-weight:500}
+  .email-item{background:#fff;border-bottom:1px solid #f0f0f0;padding:10px 16px;display:flex;align-items:center;gap:10px;cursor:pointer}
+  .email-item.unread{background:#f2f6fc;font-weight:600}
+  .email-item.open{background:#e8f0fe;border-left:3px solid #1a73e8}
+  .avatar{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0}
+  .av-ms{background:#0078d4;color:#fff}
+  .av-hr{background:#e8453c;color:#fff}
+  .av-it{background:#34a853;color:#fff}
+  .email-from{font-size:13px;width:140px;flex-shrink:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .email-subj{font-size:13px;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#202124}
+  .email-subj .preview{color:#5f6368;font-weight:400}
+  .email-time{font-size:12px;color:#5f6368;flex-shrink:0}
+  .email-view{background:#fff;border-top:1px solid #e0e0e0}
+  .ev-header{padding:16px 20px;border-bottom:1px solid #f0f0f0}
+  .ev-subject{font-size:20px;color:#202124;margin-bottom:12px;font-weight:400}
+  .ev-from-row{display:flex;align-items:flex-start;gap:10px;margin-bottom:4px}
+  .ev-avatar{width:40px;height:40px;border-radius:50%;background:#0078d4;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px;flex-shrink:0}
+  .ev-name{font-size:14px;font-weight:600;color:#202124}
+  .ev-time{font-size:12px;color:#5f6368;margin-top:4px}
+  .ev-body{padding:20px;font-size:14px;color:#202124;line-height:1.7;background:#fff}
+  .ms-banner{background:#0078d4;padding:14px 20px;display:flex;align-items:center;gap:12px;border-radius:4px 4px 0 0}
+  .ms-banner-logo{color:#fff;font-size:18px;font-weight:700;letter-spacing:-0.5px}
+  .ms-banner p{color:rgba(255,255,255,.85);font-size:12px;margin:0}
+  .email-card{border:1px solid #e0e0e0;border-radius:4px;overflow:hidden;margin:12px 0}
+  .email-card-body{padding:20px;background:#fff}
+  .cta-btn{display:inline-block;background:#0078d4;color:#fff;padding:12px 28px;border-radius:4px;font-size:14px;font-weight:600;text-decoration:none;margin:12px 0;cursor:pointer}
+  .link-row{font-size:12px;color:#5f6368;margin-top:8px}
+  .fake-link{color:#1a73e8;text-decoration:underline;font-size:12px}
+  .divider{border:none;border-top:1px solid #e0e0e0;margin:12px 0}
+  .footer-text{font-size:11px;color:#9aa0a6;line-height:1.6}
+  .red-box{outline:2px solid #dc3545;outline-offset:2px;border-radius:3px}
+  .orange-box{outline:2px solid #ff8c00;outline-offset:2px;border-radius:3px}
+  .blue-box{outline:2px solid #0078d4;outline-offset:2px;border-radius:3px}
+  .section-header{background:#f8f9fa;padding:8px 16px;font-size:11px;font-weight:700;color:#5f6368;text-transform:uppercase;letter-spacing:.08em;border-bottom:1px solid #e0e0e0;border-top:1px solid #e0e0e0}
+  .flag{display:flex;align-items:flex-start;gap:8px;background:#fff3cd;border:1px solid #ffc107;border-radius:6px;padding:8px 10px;margin:6px 0;font-size:11px;color:#856404}
+  .flag-num{border-radius:50%;width:18px;height:18px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0;margin-top:1px;color:#fff}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="gmail-top">
+    <div class="gmail-logo">Mail</div>
+    <input class="search" value="Search mail" readonly/>
+    <div style="font-size:12px;color:#5f6368">jsmith@company.com</div>
+  </div>
+  <div class="inbox-strip">
+    <div class="tab active">Primary</div>
+    <div class="tab">Social</div>
+    <div class="tab">Promotions</div>
+  </div>
+  <div class="email-item unread open">
+    <div class="avatar av-ms">M</div>
+    <div class="email-from">Microsoft Account</div>
+    <div class="email-subj">Action Required: Unusual sign-in activity <span class="preview">— We detected a sign-in to your Microsoft account from an...</span></div>
+    <div class="email-time">9:47 AM</div>
+  </div>
+  <div class="email-item">
+    <div class="avatar av-hr">HR</div>
+    <div class="email-from">HR Department</div>
+    <div class="email-subj">Q2 Benefits Enrollment <span class="preview">— Please complete your benefits enrollment by Friday...</span></div>
+    <div class="email-time">8:22 AM</div>
+  </div>
+  <div class="email-item">
+    <div class="avatar av-it">IT</div>
+    <div class="email-from">IT Helpdesk</div>
+    <div class="email-subj">Password expiring in 24 hours <span class="preview">— Your network password will expire tomorrow. Click here to...</span></div>
+    <div class="email-time">Yesterday</div>
+  </div>
+  <div class="email-view">
+    <div class="ev-header">
+      <div class="ev-subject">Action Required: Unusual sign-in activity detected on your account</div>
+      <div class="ev-from-row">
+        <div class="ev-avatar">M</div>
+        <div>
+          <div class="ev-name">Microsoft Account Team &lt;<span class="red-box" style="padding:1px 3px">security-noreply@micros0ft-accounts.com</span>&gt;</div>
+          <div style="font-size:12px;color:#5f6368;margin-top:2px">to: jsmith@company.com &nbsp;|&nbsp; <span style="color:#d93025;font-size:11px">⚠ Sender not in your contacts</span></div>
+          <div class="ev-time">Today, 9:47 AM</div>
+        </div>
+      </div>
+    </div>
+    <div class="ev-body">
+      <div class="email-card">
+        <div class="ms-banner">
+          <div class="ms-banner-logo">Microsoft</div>
+          <p>Account Security Alert</p>
+        </div>
+        <div class="email-card-body">
+          <p style="font-size:15px;font-weight:600;color:#202124;margin-bottom:12px">We noticed unusual activity on your account</p>
+          <p style="font-size:13px;color:#444;margin-bottom:10px">Dear <strong>John Smith</strong>,</p>
+          <p style="font-size:13px;color:#444;margin-bottom:10px">We detected a sign-in to your Microsoft account from a new location. If this was you, you can ignore this message. If you did not sign in recently, your account may be compromised.</p>
+          <div style="background:#fff4f4;border-left:3px solid #d93025;padding:10px 14px;margin:12px 0;border-radius:0 4px 4px 0">
+            <div style="font-size:12px;color:#444">
+              <strong>Sign-in details:</strong><br/>
+              Location: Kyiv, Ukraine &nbsp;|&nbsp; IP: 185.220.101.47<br/>
+              Time: May 10, 2026 — 9:31 AM UTC<br/>
+              Device: Unknown Windows Device
+            </div>
+          </div>
+          <p style="font-size:13px;color:#444;margin-bottom:6px"><strong style="color:#d93025">Your account will be locked in 24 hours</strong> unless you verify your identity immediately.</p>
+          <div class="orange-box" style="display:inline-block;margin:8px 0">
+            <div class="cta-btn">Verify My Account Now</div>
+          </div>
+          <div class="link-row">
+            Or copy this link: <span class="fake-link blue-box" style="padding:1px 3px">https://microsoft-security-verify.account-alert.net/auth?user=jsmith&token=8f3kQpL2</span>
+          </div>
+          <hr class="divider"/>
+          <div class="footer-text">
+            Microsoft Corporation | One Microsoft Way, Redmond, WA 98052<br/>
+            This is an automated security alert. Do not reply to this email.<br/>
+            &copy; 2026 Microsoft Corporation. All rights reserved.<br/>
+            <span class="fake-link">Unsubscribe</span> &nbsp;|&nbsp; <span class="fake-link">Privacy Statement</span> &nbsp;|&nbsp; <span class="fake-link">Terms of Use</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="section-header">Attack analysis — why this works</div>
+  <div style="padding:12px 16px;background:#fafafa;display:flex;flex-direction:column;gap:6px">
+    <div class="flag"><div class="flag-num" style="background:#dc3545">1</div><div><strong>Fake domain:</strong> "micros0ft-accounts.com" uses a zero instead of "o". Most people never check the full sender address.</div></div>
+    <div class="flag"><div class="flag-num" style="background:#ff8c00">2</div><div><strong>Urgency trigger:</strong> "Account locked in 24 hours" forces a rushed decision. Panic overrides rational thinking — the core of social engineering.</div></div>
+    <div class="flag"><div class="flag-num" style="background:#ff8c00">3</div><div><strong>Malicious link:</strong> URL looks official but "account-alert.net" is attacker-controlled. Leads to a fake login page that harvests credentials.</div></div>
+    <div class="flag"><div class="flag-num" style="background:#0078d4">4</div><div><strong>Personalization:</strong> Uses real name and company email. Attackers scrape LinkedIn to make emails feel personal and targeted.</div></div>
+    <div class="flag"><div class="flag-num" style="background:#0078d4">5</div><div><strong>Professional branding:</strong> Real Microsoft colors, logo, and legal footer. Visual design disarms suspicion before the victim reads the content.</div></div>
+  </div>
+</div>
+</body>
+</html>
