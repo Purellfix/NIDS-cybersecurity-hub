@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CyberSec Hub | Zero Trust Solution</title>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&display=swap" rel="stylesheet"/>
+  <style>
+    :root{--bg:#07090f;--surface:#0f1520;--card:#141e2e;--green:#00e5a0;--gdim:rgba(0,229,160,.09);--red:#ff4d6d;--rdim:rgba(255,77,109,.09);--blue:#4d9fff;--text:#dde6f0;--muted:#7a8fa8;--border:rgba(0,229,160,.15);--mono:'Share Tech Mono',monospace;--sans:'DM Sans',sans-serif}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.75;overflow-x:hidden}
+    nav{position:sticky;top:0;z-index:100;background:rgba(7,9,15,.94);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 2.5rem;height:58px}
+    .nav-logo{font-family:var(--mono);color:var(--green);font-size:.9rem;text-decoration:none;letter-spacing:.06em}
+    .nav-links{display:flex;gap:1.75rem;list-style:none}
+    .nav-links a{color:var(--muted);text-decoration:none;font-size:.83rem;font-weight:500;transition:color .2s}
+    .nav-links a:hover,.nav-links a.active{color:var(--green)}
+    .hero{min-height:90vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:5rem 2rem;position:relative;overflow:hidden}
+    .hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 90% 55% at 50% -5%,rgba(0,229,160,.1) 0%,transparent 65%),radial-gradient(ellipse 45% 35% at 85% 85%,rgba(77,159,255,.06) 0%,transparent 60%);pointer-events:none}
+    .grid-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(0,229,160,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(0,229,160,.025) 1px,transparent 1px);background-size:48px 48px}
+    .hero>*{position:relative;z-index:1}
+    .tag{font-family:var(--mono);font-size:.68rem;color:var(--green);letter-spacing:.18em;text-transform:uppercase;border:1px solid var(--border);padding:.35rem 1.1rem;border-radius:999px;background:var(--gdim);margin-bottom:2rem;animation:up .6s both}
+    .hero h1{font-family:var(--mono);font-size:clamp(2rem,5.5vw,4rem);color:#fff;line-height:1.15;margin-bottom:1.5rem;animation:up .7s .1s both}
+    .hero h1 em{font-style:normal;color:var(--green)}
+    .hero>p{max-width:600px;font-size:1.05rem;color:var(--muted);margin-bottom:2.5rem;font-weight:300;animation:up .7s .2s both}
+    .btns{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;animation:up .7s .3s both}
+    .btn{display:inline-block;padding:.75rem 2rem;border-radius:6px;font-size:.88rem;font-weight:500;text-decoration:none;transition:all .2s}
+    .btn-p{background:var(--green);color:#07090f;border:1px solid var(--green)}
+    .btn-p:hover{background:#00c98d;transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,229,160,.25)}
+    .btn-o{background:transparent;color:var(--text);border:1px solid rgba(255,255,255,.15)}
+    .btn-o:hover{border-color:var(--green);color:var(--green);transform:translateY(-2px)}
+    .sec{padding:5rem 2rem}
+    .sec.alt{background:var(--surface)}
+    .wrap{max-width:1060px;margin:0 auto}
+    .lbl{font-family:var(--mono);font-size:.67rem;color:var(--green);letter-spacing:.2em;text-transform:uppercase;margin-bottom:.6rem}
+    h2.t{font-size:clamp(1.6rem,3vw,2.3rem);font-weight:700;color:#fff;line-height:1.2;margin-bottom:.85rem}
+    p.sub{color:var(--muted);font-size:.97rem;max-width:560px;margin-bottom:3rem;font-weight:300}
+    p.body{color:var(--muted);font-size:.93rem;margin-bottom:1rem}
+    strong{color:var(--text)}
+    .dual{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:1.5rem;margin-bottom:2rem}
+    .dcard{background:var(--card);border-radius:14px;padding:2rem;border:1px solid var(--border);position:relative;overflow:hidden;transition:transform .2s,box-shadow .2s}
+    .dcard:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(0,0,0,.35)}
+    .dcard::after{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+    .dcard.g::after{background:linear-gradient(90deg,var(--green),transparent)}
+    .dcard.r::after{background:linear-gradient(90deg,var(--red),transparent)}
+    .dcard h3{font-size:1.05rem;font-weight:700;color:#fff;margin:1rem 0 .6rem}
+    .dcard p{color:var(--muted);font-size:.88rem}
+    .big-num{font-family:var(--mono);font-size:2.2rem;font-weight:700;margin-top:1.2rem;display:block}
+    .num-lbl{font-size:.7rem;color:var(--muted)}
+    .chain{display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;justify-content:center;margin:2rem 0;padding:1.75rem;background:var(--card);border:1px solid var(--border);border-radius:14px}
+    .ci{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:.5rem 1rem;font-family:var(--mono);font-size:.72rem;color:var(--text)}
+    .ca{color:var(--green);font-size:1.1rem}
+    .charts-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem;margin:2rem 0}
+    .cbox{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.75rem}
+    .cbox h4{color:#fff;font-size:.93rem;font-weight:700;margin-bottom:1.25rem}
+    .bar-chart{display:flex;flex-direction:column;gap:.8rem}
+    .bar-row{display:flex;align-items:center;gap:.85rem}
+    .bl{font-size:.75rem;color:var(--muted);width:120px;flex-shrink:0;font-family:var(--mono);line-height:1.3}
+    .bt{flex:1;background:rgba(255,255,255,.06);border-radius:4px;height:22px;overflow:hidden}
+    .bf{height:100%;border-radius:4px;display:flex;align-items:center;padding-left:.5rem;font-size:.7rem;font-family:var(--mono);color:#07090f;font-weight:700;width:0;transition:width 1.1s cubic-bezier(.22,1,.36,1)}
+    .bv{font-family:var(--mono);font-size:.75rem;color:var(--text);width:52px;text-align:right;flex-shrink:0}
+    .chart-note{font-size:.7rem;color:var(--muted);margin-top:1rem}
+    .donut-wrap{display:flex;align-items:center;gap:2rem;flex-wrap:wrap}
+    .d-legend{display:flex;flex-direction:column;gap:.6rem}
+    .li{display:flex;align-items:center;gap:.6rem;font-size:.8rem;color:var(--muted)}
+    .ld{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+    .sol-hero{background:linear-gradient(135deg,rgba(0,229,160,.08),rgba(77,159,255,.04));border:1px solid rgba(0,229,160,.22);border-radius:16px;padding:2.75rem;margin-bottom:2.5rem}
+    .sol-hero h3{font-family:var(--mono);font-size:1.3rem;color:var(--green);margin-bottom:.9rem}
+    .sol-hero p{color:var(--text);font-size:.95rem;max-width:720px}
+    .pillars{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1rem;margin:2rem 0}
+    .pill{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1.4rem;text-align:center}
+    .pill .pi{font-size:1.8rem;margin-bottom:.6rem}
+    .pill h4{color:#fff;font-size:.88rem;font-weight:700;margin-bottom:.4rem}
+    .pill p{color:var(--muted);font-size:.78rem;margin:0}
+    footer{border-top:1px solid var(--border);padding:2rem 2.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;font-size:.77rem;color:var(--muted);font-family:var(--mono)}
+    footer a{color:var(--green);text-decoration:none}
+    @keyframes up{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+  </style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="index.html">// CYBERSEC_HUB</a>
+  <ul class="nav-links">
+    <li><a href="index.html" class="active">Home</a></li>
+    <li><a href="content.html">The Problem</a></li>
+    <li><a href="solution.html">Zero Trust Solution</a></li>
+    <li><a href="references.html">References</a></li>
+  </ul>
+</nav>
+
+<div class="hero">
+  <div class="hero-bg"></div><div class="grid-bg"></div>
+  <div class="tag">City Tech · Prof. Ellis · Team Research</div>
+  <h1>Two Cracks in<br/>Every Network's<br/><em>Foundation</em></h1>
+  <p>NIDS false positives bury real attacks in noise. Social engineering bypasses technology entirely. Together, they create a gap attackers exploit every day — and one framework closes both.</p>
+  <div class="btns">
+    <a href="content.html" class="btn btn-p">Explore the Problems</a>
+    <a href="solution.html" class="btn btn-o">Our Solution →</a>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="wrap">
+    <div class="lbl">// the dual threat</div>
+    <h2 class="t">Two Problems. One Unified Solution.</h2>
+    <p class="sub">Neither problem exists in isolation — they compound each other. Our solution addresses both at the root level.</p>
+    <div class="dual">
+      <div class="dcard g">
+        <span style="font-size:2rem">📡</span>
+        <h3>NIDS False Positive Overload</h3>
+        <p>Intrusion Detection Systems incorrectly flag benign traffic thousands of times daily. Analysts become desensitized. Real attacks hide in the noise. The system meant to protect the network becomes a liability.</p>
+        <span class="big-num">92.85%</span>
+        <span class="num-lbl">of all false IDS cases in real-world deployments are false positives [1]</span>
+      </div>
+      <div class="dcard r">
+        <span style="font-size:2rem">🎭</span>
+        <h3>Social Engineering Attacks</h3>
+        <p>Attackers skip the network entirely and target people — through phishing, pretexting, and MFA fatigue. Once an employee hands over valid credentials, no intrusion signature exists. The attacker looks legitimate.</p>
+        <span class="big-num" style="color:var(--red)">~82%</span>
+        <span class="num-lbl">of data breaches involve the human element [2]</span>
+      </div>
+    </div>
+    <div class="chain">
+      <div class="ci">Alert flooding</div><span class="ca">→</span>
+      <div class="ci">Analyst fatigue</div><span class="ca">→</span>
+      <div class="ci">Missed real alert</div><span class="ca">→</span>
+      <div class="ci">Phishing succeeds</div><span class="ca">→</span>
+      <div class="ci">Credentials stolen</div><span class="ca">→</span>
+      <div class="ci" style="color:var(--red);border-color:rgba(255,77,109,.3)">Breach</div>
+    </div>
+  </div>
+</div>
+
+<div class="sec alt">
+  <div class="wrap">
+    <div class="lbl">// the data</div>
+    <h2 class="t">Why This Can't Be Ignored</h2>
+    <p class="sub">Real statistics showing the scale of both problems — and the measurable impact of Zero Trust as the solution.</p>
+    <div class="charts-grid">
+
+      <div class="cbox">
+        <h4>False Positive Rate by Sector (% of daily alerts)</h4>
+        <div class="bar-chart">
+          <div class="bar-row"><span class="bl">Healthcare</span><div class="bt"><div class="bf" data-w="92" style="background:var(--green)">92%</div></div><span class="bv">92%</span></div>
+          <div class="bar-row"><span class="bl">Gov / Federal</span><div class="bt"><div class="bf" data-w="88" style="background:#4d9fff">88%</div></div><span class="bv">88%</span></div>
+          <div class="bar-row"><span class="bl">Finance</span><div class="bt"><div class="bf" data-w="85" style="background:#a78bfa">85%</div></div><span class="bv">85%</span></div>
+          <div class="bar-row"><span class="bl">Retail</span><div class="bt"><div class="bf" data-w="78" style="background:#fb923c">78%</div></div><span class="bv">78%</span></div>
+          <div class="bar-row"><span class="bl">SMB</span><div class="bt"><div class="bf" data-w="65" style="background:var(--red)">65%</div></div><span class="bv">65%</span></div>
+        </div>
+        <p class="chart-note">Source: Ponemon Institute / SANS ICS Security Survey</p>
+      </div>
+
+      <div class="cbox">
+        <h4>Zero Trust Adoption Status — Enterprise 2024</h4>
+        <div class="donut-wrap">
+          <svg width="140" height="140" viewBox="0 0 140 140" style="flex-shrink:0">
+            <circle cx="70" cy="70" r="52" fill="none" stroke="rgba(255,255,255,.05)" stroke-width="22"/>
+            <circle cx="70" cy="70" r="52" fill="none" stroke="var(--green)" stroke-width="22" stroke-dasharray="199 127" stroke-dashoffset="81.7"/>
+            <circle cx="70" cy="70" r="52" fill="none" stroke="#4d9fff" stroke-width="22" stroke-dasharray="91 235" stroke-dashoffset="-118"/>
+            <circle cx="70" cy="70" r="52" fill="none" stroke="#fb923c" stroke-width="22" stroke-dasharray="36 290" stroke-dashoffset="-209"/>
+            <text x="70" y="65" text-anchor="middle" fill="#fff" font-family="'Share Tech Mono'" font-size="17" font-weight="700">61%</text>
+            <text x="70" y="80" text-anchor="middle" fill="#7a8fa8" font-family="'Share Tech Mono'" font-size="8">Adopted</text>
+          </svg>
+          <div class="d-legend">
+            <div class="li"><span class="ld" style="background:var(--green)"></span>Fully Adopted — 61%</div>
+            <div class="li"><span class="ld" style="background:#4d9fff"></span>In Progress — 28%</div>
+            <div class="li"><span class="ld" style="background:#fb923c"></span>Planning Phase — 11%</div>
+          </div>
+        </div>
+        <p class="chart-note">Source: Microsoft Zero Trust Adoption Report 2024</p>
+      </div>
+
+      <div class="cbox">
+        <h4>Avg. Breach Cost: ZTA vs No ZTA (USD millions)</h4>
+        <div class="bar-chart">
+          <div class="bar-row"><span class="bl">No ZTA</span><div class="bt"><div class="bf" data-w="100" style="background:var(--red)">$4.76M</div></div><span class="bv">$4.76M</span></div>
+          <div class="bar-row"><span class="bl">Partial ZTA</span><div class="bt"><div class="bf" data-w="72" style="background:#fb923c">$3.43M</div></div><span class="bv">$3.43M</span></div>
+          <div class="bar-row"><span class="bl">Mature ZTA</span><div class="bt"><div class="bf" data-w="48" style="background:var(--green)">$2.27M</div></div><span class="bv">$2.27M</span></div>
+        </div>
+        <p class="chart-note">Mature ZTA saves ~$2.5M per breach · Source: IBM Cost of Data Breach Report 2023</p>
+      </div>
+
+      <div class="cbox">
+        <h4>False Positive Reduction with Progressive ZTA</h4>
+        <div class="bar-chart">
+          <div class="bar-row"><span class="bl">No changes</span><div class="bt"><div class="bf" data-w="100" style="background:var(--red)">Baseline</div></div><span class="bv">100%</span></div>
+          <div class="bar-row"><span class="bl">Rule tuning</span><div class="bt"><div class="bf" data-w="68" style="background:#fb923c">-32%</div></div><span class="bv">68%</span></div>
+          <div class="bar-row"><span class="bl">+ Segmentation</span><div class="bt"><div class="bf" data-w="45" style="background:#4d9fff">-55%</div></div><span class="bv">45%</span></div>
+          <div class="bar-row"><span class="bl">+ Full ZTA</span><div class="bt"><div class="bf" data-w="28" style="background:var(--green)">-72%</div></div><span class="bv">28%</span></div>
+        </div>
+        <p class="chart-note">Source: Gartner / Forrester Research 2023</p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="wrap">
+    <div class="lbl">// our answer</div>
+    <h2 class="t">The Solution: Zero Trust Architecture</h2>
+    <p class="sub">One framework that closes both gaps simultaneously — and is already being adopted by leading organizations worldwide.</p>
+    <div class="sol-hero">
+      <h3>// Never Trust. Always Verify.</h3>
+      <p>Zero Trust removes the idea of a trusted "inside" network. Every user, device, and connection is verified continuously — regardless of location. This directly reduces NIDS false positives through micro-segmentation and eliminates social engineering damage because stolen credentials alone can never grant access.</p>
+    </div>
+    <div class="pillars">
+      <div class="pill"><div class="pi">🔍</div><h4>Verify Explicitly</h4><p>Every request authenticated using identity, device health, location, and behavior signals.</p></div>
+      <div class="pill"><div class="pi">🔒</div><h4>Least Privilege</h4><p>Users and systems get only the access they need. Lateral movement becomes nearly impossible.</p></div>
+      <div class="pill"><div class="pi">📦</div><h4>Micro-Segmentation</h4><p>Network split into small zones. Each NIDS monitors far less traffic, cutting false positives up to 72%.</p></div>
+      <div class="pill"><div class="pi">🛡️</div><h4>Assume Breach</h4><p>Operate as if a breach is always possible. Contains damage and accelerates real threat detection.</p></div>
+    </div>
+    <div style="text-align:center;margin-top:2.5rem">
+      <a href="solution.html" class="btn btn-p">Full Zero Trust Breakdown →</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <span>// NIDScybersecurity-hub · City Tech · Prof. Ellis</span>
+  <span>N. Komarov · Y. Koumako · D. Twene</span>
+</footer>
+
+<script>
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      e.target.querySelectorAll('.bf').forEach((b, i) => {
+        setTimeout(() => { b.style.width = b.dataset.w + '%'; }, i * 120);
+      });
+      io.unobserve(e.target);
+    });
+  }, {threshold: 0.3});
+  document.querySelectorAll('.cbox').forEach(c => io.observe(c));
+</script>
+</body>
+</html>

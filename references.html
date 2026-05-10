@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>References | CyberSec Hub</title>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet"/>
+  <style>
+    :root{--bg:#07090f;--surface:#0f1520;--card:#141e2e;--green:#00e5a0;--gdim:rgba(0,229,160,.09);--text:#dde6f0;--muted:#7a8fa8;--border:rgba(0,229,160,.15);--mono:'Share Tech Mono',monospace;--sans:'DM Sans',sans-serif}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.75;overflow-x:hidden}
+    nav{position:sticky;top:0;z-index:100;background:rgba(7,9,15,.94);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 2.5rem;height:58px}
+    .nav-logo{font-family:var(--mono);color:var(--green);font-size:.9rem;text-decoration:none}
+    .nav-links{display:flex;gap:1.75rem;list-style:none}
+    .nav-links a{color:var(--muted);text-decoration:none;font-size:.83rem;font-weight:500;transition:color .2s}
+    .nav-links a:hover,.nav-links a.active{color:var(--green)}
+    .ph{padding:5rem 2rem 3.5rem;text-align:center;position:relative;overflow:hidden}
+    .ph::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 55% at 50% 0%,rgba(0,229,160,.09) 0%,transparent 70%)}
+    .plbl{font-family:var(--mono);font-size:.68rem;color:var(--green);letter-spacing:.18em;text-transform:uppercase;border:1px solid var(--border);padding:.35rem 1.1rem;border-radius:999px;display:inline-block;background:var(--gdim);margin-bottom:1.5rem}
+    .ph h1{font-family:var(--mono);font-size:clamp(1.8rem,4vw,2.8rem);color:#fff;margin-bottom:1rem}
+    .ph h1 span{color:var(--green)}
+    .ph>p{color:var(--muted);max-width:540px;margin:0 auto;font-size:.97rem;font-weight:300}
+    .sec{padding:3rem 2rem 6rem}
+    .wrap{max-width:860px;margin:0 auto}
+    .note{background:var(--gdim);border:1px solid rgba(0,229,160,.2);border-radius:10px;padding:1.25rem 1.5rem;margin-bottom:2.5rem;font-size:.87rem;color:var(--text)}
+    .note strong{color:var(--green)}
+    .ref{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:2rem 2.25rem;margin-bottom:1.5rem;position:relative;overflow:hidden;transition:transform .2s,box-shadow .2s}
+    .ref:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(0,0,0,.3)}
+    .ref::before{content:'';position:absolute;top:0;left:0;bottom:0;width:3px;background:var(--green)}
+    .ref-num{font-family:var(--mono);font-size:.72rem;color:var(--green);letter-spacing:.1em;margin-bottom:.6rem;display:block}
+    .ref-title{font-size:1rem;font-weight:700;color:#fff;margin-bottom:.5rem;line-height:1.35}
+    .ref-authors{font-size:.87rem;color:var(--muted);margin-bottom:.3rem}
+    .ref-venue{font-size:.84rem;color:var(--text);margin-bottom:.3rem}
+    .ref-full{font-family:var(--mono);font-size:.76rem;color:var(--muted);background:var(--surface);border-radius:6px;padding:.9rem 1rem;margin-top:.9rem;line-height:1.6;word-break:break-all}
+    .ref-link{display:inline-flex;align-items:center;gap:.4rem;margin-top:.85rem;color:var(--green);font-size:.8rem;text-decoration:none;font-family:var(--mono);transition:opacity .2s}
+    .ref-link:hover{opacity:.75}
+    .team-section{margin-top:4rem;padding-top:3rem;border-top:1px solid var(--border)}
+    .lbl{font-family:var(--mono);font-size:.67rem;color:var(--green);letter-spacing:.2em;text-transform:uppercase;margin-bottom:.6rem}
+    h2.t{font-size:1.4rem;font-weight:700;color:#fff;margin-bottom:1.5rem}
+    .team-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem}
+    .tm{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1.4rem}
+    .tm .name{font-weight:700;color:#fff;margin-bottom:.2rem}
+    .tm .role{font-family:var(--mono);font-size:.7rem;color:var(--green);margin-bottom:.5rem}
+    .tm p{color:var(--muted);font-size:.82rem;margin:0}
+    footer{border-top:1px solid var(--border);padding:2rem 2.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;font-size:.77rem;color:var(--muted);font-family:var(--mono)}
+    footer a{color:var(--green);text-decoration:none}
+  </style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="index.html">// CYBERSEC_HUB</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="content.html">The Problem</a></li>
+    <li><a href="solution.html">Zero Trust Solution</a></li>
+    <li><a href="references.html" class="active">References</a></li>
+  </ul>
+</nav>
+
+<div class="ph">
+  <div class="plbl">// sources</div>
+  <h1>IEEE <span>References</span></h1>
+  <p>All sources cited throughout this website follow IEEE bibliographic format.</p>
+</div>
+
+<div class="sec">
+  <div class="wrap">
+    <div class="note"><strong>Citation Format:</strong> All references below follow IEEE bibliographic style. In-text citations appear as [1], [2], etc. throughout the site's content pages.</div>
+
+    <div class="ref">
+      <span class="ref-num">[1] — NIDS False Positives (Nicolas Komarov)</span>
+      <div class="ref-title">Statistical Analysis of False Positives and False Negatives from Real Traffic with Intrusion Detection/Prevention Systems</div>
+      <div class="ref-authors">C.-Y. Ho, Y.-C. Lai, I.-W. Chen, F.-Y. Wang, and W.-H. Tai</div>
+      <div class="ref-venue"><em>IEEE Communications Magazine</em>, vol. 50, no. 3, pp. 110–116, Mar. 2012</div>
+      <div class="ref-full">C.-Y. Ho, Y.-C. Lai, I.-W. Chen, F.-Y. Wang, and W.-H. Tai, "Statistical analysis of false positives and false negatives from real traffic with intrusion detection/prevention systems," IEEE Commun. Mag., vol. 50, no. 3, pp. 110–116, Mar. 2012. [Online]. Available: https://ieeexplore.ieee.org/abstract/document/6163595/</div>
+      <a class="ref-link" href="https://ieeexplore.ieee.org/abstract/document/6163595/" target="_blank">↗ View on IEEE Xplore</a>
+    </div>
+
+    <div class="ref">
+      <span class="ref-num">[2] — Social Engineering (Yao Koumako)</span>
+      <div class="ref-title">Social Engineering in Cybersecurity: Effect Mechanisms, Human Vulnerabilities and Attack Methods</div>
+      <div class="ref-authors">Z. Wang et al.</div>
+      <div class="ref-venue"><em>IEEE Access</em>, vol. 9, pp. 11895–11910, 2021</div>
+      <div class="ref-full">Z. Wang et al., "Social engineering in cybersecurity: Effect mechanisms, human vulnerabilities and attack methods," IEEE Access, vol. 9, pp. 11895–11910, 2021, doi: 10.1109/ACCESS.2021.3051633.</div>
+      <a class="ref-link" href="https://doi.org/10.1109/ACCESS.2021.3051633" target="_blank">↗ View on IEEE Xplore</a>
+    </div>
+
+    <div class="team-section">
+      <div class="lbl">// research team</div>
+      <h2 class="t">Team Members</h2>
+      <div class="team-grid">
+        <div class="tm"><div class="name">Nicolas Komarov</div><div class="role">// NIDS Researcher</div><p>False positive rates in NIDS — causes, real-world impact, and Zero Trust micro-segmentation as the fix.</p></div>
+        <div class="tm"><div class="name">Yao Koumako</div><div class="role">// Social Engineering Researcher</div><p>Social engineering attack methods, human vulnerabilities, and hardware-key Zero Trust authentication.</p></div>
+        <div class="tm"><div class="name">Deacon Twene</div><div class="role">// Presentation Lead</div><p>Oral presentation coordination, slide deck development, and final team delivery.</p></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <span>// NIDScybersecurity-hub · City Tech · Prof. Ellis</span>
+  <span><a href="index.html">← Home</a></span>
+</footer>
+</body>
+</html>
