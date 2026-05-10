@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>NIDS Alert Dashboard</title>
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  body{background:#0a0e17;font-family:'Share Tech Mono',monospace;padding:0;margin:0}
+  @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+  .db{background:#0a0e17;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,.1);margin:0}
+  .db-top{background:#111827;padding:10px 16px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.08)}
+  .db-title{color:#e2e8f0;font-size:13px;font-weight:500;display:flex;align-items:center;gap:8px}
+  .dot{width:8px;height:8px;border-radius:50%;background:#00e5a0;display:inline-block}
+  .dot.r{background:#ff4d6d}
+  .db-time{font-size:11px;color:#7a8fa8}
+  .db-body{padding:14px 16px;display:flex;flex-direction:column;gap:12px}
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+  .stat{background:#1a2235;border:1px solid rgba(255,255,255,.07);border-radius:8px;padding:10px;text-align:center}
+  .stat .n{font-size:20px;font-weight:700;display:block;margin-bottom:2px}
+  .stat .l{font-size:10px;color:#7a8fa8}
+  .stat.g .n{color:#00e5a0}
+  .stat.r .n{color:#ff4d6d}
+  .stat.y .n{color:#ffb400}
+  .stat.b .n{color:#4d9fff}
+  .alert-table{background:#1a2235;border-radius:8px;overflow:hidden;border:1px solid rgba(255,255,255,.07)}
+  .tbl-head{display:grid;grid-template-columns:60px 1fr 110px 80px 80px;gap:8px;padding:8px 12px;background:#0f1520;font-size:10px;color:#7a8fa8;text-transform:uppercase;letter-spacing:.08em}
+  .tbl-row{display:grid;grid-template-columns:60px 1fr 110px 80px 80px;gap:8px;padding:8px 12px;font-size:11px;border-top:1px solid rgba(255,255,255,.04);align-items:center}
+  .badge{display:inline-block;padding:2px 7px;border-radius:4px;font-size:10px;font-weight:700}
+  .badge.fp{background:rgba(255,180,0,.15);color:#ffb400}
+  .badge.hi{background:rgba(255,77,109,.15);color:#ff4d6d}
+  .badge.lo{background:rgba(0,229,160,.15);color:#00e5a0}
+  .badge.md{background:rgba(77,159,255,.15);color:#4d9fff}
+  .src-ip{color:#4d9fff;font-size:11px}
+  .sig{color:#e2e8f0;font-size:11px}
+  .time-txt{color:#7a8fa8;font-size:10px}
+  .bar-mini{height:6px;background:rgba(255,255,255,.06);border-radius:3px;overflow:hidden;margin-top:4px}
+  .bar-fill-mini{height:100%;border-radius:3px}
+  .section-lbl{font-size:10px;color:#7a8fa8;text-transform:uppercase;letter-spacing:.12em;margin-bottom:4px}
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .mini-box{background:#1a2235;border:1px solid rgba(255,255,255,.07);border-radius:8px;padding:10px 12px}
+  .spark{display:flex;align-items:flex-end;gap:3px;height:36px;margin-top:6px}
+  .sp-bar{flex:1;border-radius:2px 2px 0 0;background:#4d9fff;opacity:.7}
+  .sp-bar.hi{background:#ff4d6d;opacity:.9}
+  .legend{display:flex;gap:12px;margin-top:6px}
+  .leg-item{display:flex;align-items:center;gap:5px;font-size:10px;color:#7a8fa8}
+  .leg-dot{width:7px;height:7px;border-radius:50%}
+</style>
+</head>
+<body>
+<div class="db">
+  <div class="db-top">
+    <div class="db-title">
+      <span class="dot"></span>
+      NIDS Alert Console — Live Feed
+    </div>
+    <div style="display:flex;align-items:center;gap:12px">
+      <span style="font-size:10px;color:#ff4d6d;display:flex;align-items:center;gap:4px"><span class="dot r"></span>847 active alerts</span>
+      <span class="db-time">2026-05-10 &nbsp;14:32:07 UTC</span>
+    </div>
+  </div>
+  <div class="db-body">
+    <div class="stats">
+      <div class="stat r"><span class="n">847</span><span class="l">Total Alerts</span></div>
+      <div class="stat y"><span class="n">786</span><span class="l">False Positives</span></div>
+      <div class="stat g"><span class="n">61</span><span class="l">True Positives</span></div>
+      <div class="stat b"><span class="n">92.8%</span><span class="l">FP Rate</span></div>
+    </div>
+    <div>
+      <div class="section-lbl">Recent Alerts</div>
+      <div class="alert-table">
+        <div class="tbl-head">
+          <span>Time</span><span>Signature / Event</span><span>Source IP</span><span>Severity</span><span>Status</span>
+        </div>
+        <div class="tbl-row">
+          <span class="time-txt">14:32:01</span><span class="sig">ET SCAN Nmap OS Detection Probe</span><span class="src-ip">192.168.1.42</span><span><span class="badge md">MEDIUM</span></span><span><span class="badge fp">FALSE POS</span></span>
+        </div>
+        <div class="tbl-row">
+          <span class="time-txt">14:31:58</span><span class="sig">GPL ATTACK_RESPONSE id check</span><span class="src-ip">10.0.0.15</span><span><span class="badge lo">LOW</span></span><span><span class="badge fp">FALSE POS</span></span>
+        </div>
+        <div class="tbl-row" style="background:rgba(255,77,109,.04)">
+          <span class="time-txt">14:31:44</span><span class="sig" style="color:#ff4d6d">ET MALWARE CnC Beacon Detected</span><span class="src-ip" style="color:#ff4d6d">172.16.0.88</span><span><span class="badge hi">HIGH</span></span><span><span class="badge hi">REAL</span></span>
+        </div>
+        <div class="tbl-row">
+          <span class="time-txt">14:31:39</span><span class="sig">ET POLICY HTTP POST to port 443</span><span class="src-ip">192.168.2.11</span><span><span class="badge lo">LOW</span></span><span><span class="badge fp">FALSE POS</span></span>
+        </div>
+        <div class="tbl-row">
+          <span class="time-txt">14:31:22</span><span class="sig">ET SCAN SYN Flood Detected</span><span class="src-ip">192.168.1.100</span><span><span class="badge md">MEDIUM</span></span><span><span class="badge fp">FALSE POS</span></span>
+        </div>
+        <div class="tbl-row">
+          <span class="time-txt">14:31:08</span><span class="sig">GPL DNS SPOOF query response PTR</span><span class="src-ip">10.0.0.1</span><span><span class="badge lo">LOW</span></span><span><span class="badge fp">FALSE POS</span></span>
+        </div>
+        <div class="tbl-row" style="background:rgba(255,77,109,.04)">
+          <span class="time-txt">14:30:55</span><span class="sig" style="color:#ff4d6d">ET TROJAN Metasploit Meterpreter</span><span class="src-ip" style="color:#ff4d6d">172.16.0.91</span><span><span class="badge hi">CRITICAL</span></span><span><span class="badge hi">REAL</span></span>
+        </div>
+        <div class="tbl-row">
+          <span class="time-txt">14:30:41</span><span class="sig">ET SCAN XMAS Scan</span><span class="src-ip">192.168.3.22</span><span><span class="badge lo">LOW</span></span><span><span class="badge fp">FALSE POS</span></span>
+        </div>
+      </div>
+    </div>
+    <div class="two-col">
+      <div class="mini-box">
+        <div class="section-lbl">Alerts per hour (last 8h)</div>
+        <div class="spark">
+          <div class="sp-bar" style="height:45%"></div>
+          <div class="sp-bar" style="height:60%"></div>
+          <div class="sp-bar" style="height:50%"></div>
+          <div class="sp-bar" style="height:80%"></div>
+          <div class="sp-bar hi" style="height:100%"></div>
+          <div class="sp-bar hi" style="height:95%"></div>
+          <div class="sp-bar hi" style="height:90%"></div>
+          <div class="sp-bar hi" style="height:85%"></div>
+        </div>
+        <div class="legend">
+          <div class="leg-item"><span class="leg-dot" style="background:#4d9fff"></span>Normal</div>
+          <div class="leg-item"><span class="leg-dot" style="background:#ff4d6d"></span>Alert surge</div>
+        </div>
+      </div>
+      <div class="mini-box">
+        <div class="section-lbl">Top triggered signatures</div>
+        <div style="margin-top:6px;display:flex;flex-direction:column;gap:6px">
+          <div>
+            <div style="display:flex;justify-content:space-between;font-size:10px;color:#e2e8f0;margin-bottom:2px"><span>ET SCAN</span><span style="color:#ffb400">312</span></div>
+            <div class="bar-mini"><div class="bar-fill-mini" style="width:100%;background:#ffb400"></div></div>
+          </div>
+          <div>
+            <div style="display:flex;justify-content:space-between;font-size:10px;color:#e2e8f0;margin-bottom:2px"><span>GPL POLICY</span><span style="color:#4d9fff">198</span></div>
+            <div class="bar-mini"><div class="bar-fill-mini" style="width:63%;background:#4d9fff"></div></div>
+          </div>
+          <div>
+            <div style="display:flex;justify-content:space-between;font-size:10px;color:#e2e8f0;margin-bottom:2px"><span>ET MALWARE</span><span style="color:#ff4d6d">61</span></div>
+            <div class="bar-mini"><div class="bar-fill-mini" style="width:20%;background:#ff4d6d"></div></div>
+          </div>
+          <div>
+            <div style="display:flex;justify-content:space-between;font-size:10px;color:#e2e8f0;margin-bottom:2px"><span>GPL DNS</span><span style="color:#00e5a0">276</span></div>
+            <div class="bar-mini"><div class="bar-fill-mini" style="width:88%;background:#00e5a0"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
