@@ -1,11 +1,10 @@
-<!-- Built by Nicolas Komarov | NIDS Cybersecurity Hub | City Tech 2026 -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>The Problem | CyberSec Hub</title>
-  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&display=swap" rel="stylesheet"/>
   <style>
     :root{--bg:#07090f;--surface:#0f1520;--card:#141e2e;--green:#00e5a0;--gdim:rgba(0,229,160,.09);--red:#ff4d6d;--rdim:rgba(255,77,109,.09);--text:#dde6f0;--muted:#7a8fa8;--border:rgba(0,229,160,.15);--mono:'Share Tech Mono',monospace;--sans:'DM Sans',sans-serif}
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -27,6 +26,8 @@
     .tb:hover{color:var(--green);border-color:var(--green)}
     .tb.ag{background:var(--gdim);color:var(--green);border-color:var(--green)}
     .tb.ar{background:var(--rdim);color:var(--red);border-color:var(--red)}
+    .tb.aw{background:rgba(255,180,0,.08);color:#ffb400;border-color:#ffb400}
+    .tb.ab{background:rgba(77,159,255,.08);color:#4d9fff;border-color:#4d9fff}
     .cs{display:none;padding:0 2rem 6rem}
     .cs.vis{display:block}
     .wrap{max-width:900px;margin:0 auto}
@@ -47,6 +48,7 @@
     .sn{width:30px;height:30px;flex-shrink:0;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:.75rem;font-weight:700}
     .sn.g{background:var(--gdim);color:var(--green);border:1px solid var(--green)}
     .sn.r{background:var(--rdim);color:var(--red);border:1px solid var(--red)}
+    .sn.b{background:rgba(77,159,255,.08);color:#4d9fff;border:1px solid #4d9fff}
     .sb h4{color:#fff;font-size:.92rem;margin-bottom:.25rem}
     .sb p{color:var(--muted);font-size:.84rem;margin:0}
     .stat-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:1rem;margin:1.75rem 0}
@@ -54,8 +56,7 @@
     .sbox .n{font-family:var(--mono);font-size:1.9rem;font-weight:700;display:block;margin-bottom:.2rem}
     .sbox.g .n{color:var(--green)}
     .sbox.r .n{color:var(--red)}
-    .sbox .l{font-size:.72rem;color:var(--muted)}
-  <iframe src="dashboard.html" style="width:100%;height:420px;border:none;border-radius:10px;margin:1.5rem 0;"></iframe>
+    .img-ph{width:100%;height:210px;background:var(--card);border:2px dashed var(--border);border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--muted);font-size:.8rem;font-family:var(--mono);text-align:center;gap:.4rem;margin:1.5rem 0}
     .sol-box{background:linear-gradient(135deg,rgba(0,229,160,.08),rgba(0,229,160,.02));border:1px solid rgba(0,229,160,.25);border-radius:14px;padding:2.25rem;margin-top:2.5rem}
     .sol-box h3{color:var(--green);font-size:1.1rem;margin-bottom:.7rem}
     .sol-box p{color:var(--text);font-size:.93rem}
@@ -64,11 +65,49 @@
     .also .ic{font-size:1.6rem;margin-bottom:.5rem}
     .also h4{color:#fff;font-size:.9rem;font-weight:700;margin-bottom:.4rem}
     .also p{color:var(--muted);font-size:.82rem;margin:0}
+
+    /* REPORT TAB STYLES */
+    .report-title{font-family:var(--mono);font-size:clamp(1.4rem,3vw,2rem);color:#fff;line-height:1.2;margin-bottom:1rem}
+    .report-title span{color:var(--green)}
+    .report-meta{display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;margin-bottom:2.5rem;padding-bottom:1.5rem;border-bottom:1px solid var(--border)}
+    .meta-item{display:flex;align-items:center;gap:.5rem;font-family:var(--mono);font-size:.7rem;color:var(--muted)}
+    .meta-dot{width:6px;height:6px;border-radius:50%;background:var(--green)}
+    .toc{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.5rem 1.75rem;margin-bottom:2.5rem}
+    .toc-title{font-family:var(--mono);font-size:.68rem;color:var(--green);letter-spacing:.18em;text-transform:uppercase;margin-bottom:1rem}
+    .toc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.4rem}
+    .toc-item{display:flex;align-items:center;gap:.75rem;padding:.45rem .65rem;border-radius:6px;text-decoration:none;transition:background .2s}
+    .toc-item:hover{background:var(--surface)}
+    .toc-num{font-family:var(--mono);font-size:.68rem;color:var(--green);width:22px;flex-shrink:0}
+    .toc-label{font-size:.83rem;color:var(--muted)}
+    .toc-item:hover .toc-label{color:var(--text)}
+    .rsec{padding:2rem 0;border-bottom:1px solid rgba(255,255,255,.06)}
+    .rsec:last-child{border-bottom:none}
+    .rsec-tag{font-family:var(--mono);font-size:.65rem;color:var(--green);letter-spacing:.18em;text-transform:uppercase;margin-bottom:.5rem;display:block}
+    .rsec-title{font-size:1.2rem;font-weight:700;color:#fff;margin-bottom:1.2rem}
+    .rp{color:var(--muted);font-size:.95rem;margin-bottom:1rem;line-height:1.9}
+    .rp:last-child{margin-bottom:0}
+    .rp strong{color:var(--text)}
+    .highlight{background:var(--gdim);border:1px solid rgba(0,229,160,.18);border-radius:10px;padding:1.4rem 1.75rem;margin:1.5rem 0}
+    .highlight p{color:var(--text);margin:0;font-size:.95rem;line-height:1.8}
+    .highlight strong{color:var(--green)}
+    .rq{border-left:3px solid var(--green);padding:1rem 1.5rem;margin:1.5rem 0;background:var(--surface);border-radius:0 8px 8px 0}
+    .rq p{color:var(--text);margin:0;font-size:.93rem;font-style:italic}
+    .team-contrib{display:flex;flex-direction:column;gap:1rem;margin-top:1.5rem}
+    .contrib{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.6rem}
+    .contrib .cname{font-weight:700;color:#fff;font-size:1rem;margin-bottom:.2rem}
+    .contrib .crole{font-family:var(--mono);font-size:.7rem;color:var(--green);margin-bottom:.7rem}
+    .contrib p{color:var(--muted);font-size:.87rem;line-height:1.75;margin:0}
+    .conclusion-banner{background:linear-gradient(135deg,rgba(0,229,160,.08),rgba(77,159,255,.04));border:1px solid rgba(0,229,160,.22);border-radius:14px;padding:2.25rem;margin-top:1.5rem}
+    .conclusion-banner h3{font-family:var(--mono);color:var(--green);font-size:1rem;margin-bottom:.9rem}
+    .conclusion-banner p{color:var(--text);font-size:.95rem;line-height:1.85;margin-bottom:.9rem}
+    .conclusion-banner p:last-child{margin-bottom:0}
+
     footer{border-top:1px solid var(--border);padding:2rem 2.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;font-size:.77rem;color:var(--muted);font-family:var(--mono)}
     footer a{color:var(--green);text-decoration:none}
   </style>
 </head>
 <body>
+<!-- Built by Nicolas Komarov | NIDS Cybersecurity Hub | City Tech 2026 -->
 <nav>
   <a class="nav-logo" href="index.html">// CYBERSEC_HUB</a>
   <ul class="nav-links">
@@ -76,60 +115,47 @@
     <li><a href="content.html" class="active">The Problem</a></li>
     <li><a href="solution.html">Zero Trust Solution</a></li>
     <li><a href="references.html">References</a></li>
-    <li><a href="sources.html">All Sources</a></li>
   </ul>
 </nav>
 
 <div class="ph">
-  <div class="plbl">// deep dive</div>
-  <h1>The Problem <span>In Full Detail</span></h1>
-  <p>Who is affected, how attackers exploit each weakness, how systems respond, and the hidden issues most organizations never address.</p>
+  <div class="plbl">// research &amp; report</div>
+  <h1>The Problem, <span>In Full</span></h1>
+  <p>Deep dives into NIDS false positives, social engineering, hidden issues — and the full collaborative team report.</p>
 </div>
 
 <div class="tabs">
-  <button class="tb ag" onclick="show('nids',this)">📡 NIDS False Positives</button>
-  <button class="tb" onclick="show('social',this)">🎭 Social Engineering</button>
-  <button class="tb" onclick="show('hidden',this)">⚠️ Hidden Issues</button>
+  <button class="tb ag" onclick="show('nids','ag',this)">📡 NIDS False Positives</button>
+  <button class="tb" onclick="show('social','ar',this)">🎭 Social Engineering</button>
+  <button class="tb" onclick="show('hidden','aw',this)">⚠️ Hidden Issues</button>
+  <button class="tb" onclick="show('report','ab',this)">📋 Full Report</button>
 </div>
 
 <!-- NIDS TAB -->
 <div class="cs vis" id="tab-nids">
   <div class="wrap">
     <div class="th"><span class="ti">📡</span><div><h2>NIDS False Positive Rates</h2><p>Researched by Nicolas Komarov</p></div></div>
-
     <h3 class="sh">What Is a False Positive?</h3>
-    <p class="b">A Network Intrusion Detection System (NIDS) monitors all traffic flowing through a network and raises alerts when it detects patterns that match known attack signatures or deviate from normal behavior. A <strong>false positive</strong> occurs when the system flags completely legitimate, harmless traffic as a threat a false alarm that wastes analyst time and resources without any actual security incident having occurred.</p>
-
-   <iframe src="dashboard.html" style="width:100%;height:420px;border:none;border-radius:10px;margin:1.5rem 0;"></iframe>
-
+    <p class="b">A Network Intrusion Detection System (NIDS) monitors all traffic flowing through a network and raises alerts when it detects patterns matching known attack signatures or deviating from normal behavior. A <strong>false positive</strong> occurs when the system flags completely legitimate, harmless traffic as a threat — a false alarm that wastes analyst time and resources without any actual security incident.</p>
+    <iframe src="dashboard.html" style="width:100%;height:420px;border:none;border-radius:10px;margin:1.5rem 0;"></iframe>
     <h3 class="sh">Who Does It Affect?</h3>
-    <p class="b"><strong>SOC analysts</strong> are hit hardest they must manually triage every alert. In a mid-sized organization, that can mean reviewing 500–1,000+ alerts per day, most of which are false positives. <strong>Small businesses</strong> without a dedicated security team often have one IT generalist responsible for reviewing alerts on top of all their other duties making the problem even more unmanageable. <strong>Healthcare and finance</strong> organizations face critical consequences when real attacks slip through because a real breach means HIPAA violations, patient harm, or stolen financial data. <strong>Critical infrastructure</strong> — power grids, water treatment, transportation systems faces the highest stakes of all, where a missed intrusion can have physical real-world consequences.</p>
-
+    <p class="b"><strong>SOC analysts</strong> are hit hardest — reviewing 500–1,000+ alerts per day, most of which are false positives. <strong>Small businesses</strong> without a dedicated security team often have one IT person responsible for everything. <strong>Healthcare and finance</strong> face critical consequences when real attacks slip through. <strong>Critical infrastructure</strong> faces the highest stakes — a missed intrusion can have physical real-world consequences.</p>
     <div class="stat-row">
       <div class="sbox g"><span class="n">92.85%</span><span class="l">of false IDS cases are false positives in live systems</span></div>
       <div class="sbox g"><span class="n">2,000+</span><span class="l">false cases tracked over 16 months of real traffic</span></div>
-      <div class="sbox g"><span class="n">1,000+</span><span class="l">alerts per day on an average-sized network</span></div>
+      <div class="sbox g"><span class="n">1,000+</span><span class="l">alerts per day on an average network</span></div>
     </div>
-
-    <div class="callout g">
-      Research published in IEEE Communications Magazine found that across a 16-month real-world study with over 2,000 false cases collected from live IDS/IPS systems, more than 92.85 percent of all false cases were false positives — primarily because application traffic often does not fully conform to RFC specifications, causing strict detection rules to misidentify legitimate traffic as malicious.
-      <cite>— Ho et al., IEEE Commun. Mag., vol. 50, no. 3, 2012 [1]</cite>
-    </div>
-
+    <div class="callout g">Research published in IEEE Communications Magazine found that across a 16-month real-world study with over 2,000 false cases from live IDS/IPS systems, more than 92.85 percent of all false cases were false positives — primarily because application traffic often does not fully conform to RFC specifications, causing strict detection rules to misidentify legitimate traffic as malicious.<cite>— Ho et al., IEEE Commun. Mag., vol. 50, no. 3, 2012 [1]</cite></div>
     <h3 class="sh">How Do Hackers Exploit This?</h3>
     <div class="steps">
-      <div class="step"><span class="sn g">01</span><div class="sb"><h4>Alert Flooding</h4><p>Attackers deliberately generate massive amounts of borderline-suspicious but ultimately harmless traffic before launching a real attack. The goal is to flood the NIDS with hundreds of false positive alerts so that when the genuine malicious packet arrives, analysts dismiss it as just more noise.</p></div></div>
-      <div class="step"><span class="sn g">02</span><div class="sb"><h4>Packet Fragmentation & Evasion</h4><p>Malicious payloads are split across multiple small packets. Each individual packet is harmless and matches no attack signature. The target system reassembles the fragments and the attack executes the NIDS never saw a complete threat pattern.</p></div></div>
-      <div class="step"><span class="sn g">03</span><div class="sb"><h4>Low-and-Slow Attacks</h4><p>Instead of a fast, loud intrusion, attackers move through the network at a crawl — one suspicious action per hour. The NIDS flags it, but an analyst already exhausted from clearing hundreds of false alerts is far more likely to dismiss it without investigation.</p></div></div>
-      <div class="step"><span class="sn g">04</span><div class="sb"><h4>Timing Attacks</h4><p>Real attacks launched during peak false-positive periods business hours, software update windows, after a major system change when analysts are already at maximum alert load and most likely to be overwhelmed.</p></div></div>
+      <div class="step"><span class="sn g">01</span><div class="sb"><h4>Alert Flooding</h4><p>Attackers generate massive amounts of borderline-suspicious traffic before the real attack, flooding the NIDS so analysts dismiss the genuine malicious packet as more noise.</p></div></div>
+      <div class="step"><span class="sn g">02</span><div class="sb"><h4>Packet Fragmentation & Evasion</h4><p>Malicious payloads split across multiple small packets — each looks harmless individually. The target reassembles them and the attack executes; the NIDS never saw a complete threat.</p></div></div>
+      <div class="step"><span class="sn g">03</span><div class="sb"><h4>Low-and-Slow Attacks</h4><p>Moving through the network at a crawl — one suspicious action per hour — takes advantage of alert fatigue. Exhausted analysts are far more likely to dismiss it without investigation.</p></div></div>
+      <div class="step"><span class="sn g">04</span><div class="sb"><h4>Timing Attacks</h4><p>Real attacks launched during peak false-positive periods — business hours, update windows — when analysts are at maximum alert load and most likely to be overwhelmed.</p></div></div>
     </div>
-
-    <h3 class="sh">How Does the NIDS React?</h3>
-    <p class="b">When a false positive fires, several things happen simultaneously and none of them are good. The alert joins the analyst's queue, adding to an already overwhelming backlog. If the system is configured for automated response, it may <strong>auto-block the IP address</strong> that triggered the alert which could be a legitimate business partner, a trusted service, or even an internal server, causing real disruption. Processing false alerts at scale <strong>consumes significant CPU and memory</strong> on the NIDS appliance itself, slowing down real-time traffic analysis. In extreme cases, <strong>alert queue overflow</strong> causes the system to drop alerts entirely meaning real attacks stop being logged because the queue is full of noise.</p>
-
     <div class="sol-box">
-      <h3>💡 Proposed Fix: Micro-Segmentation + Rule Tuning (Part of Zero Trust)</h3>
-      <p>Dividing the network into small, isolated zones means each NIDS sensor monitors a fraction of the total traffic dramatically reducing the pool of signatures that can generate false matches. Combined with regular rule tuning specific to each zone's expected traffic, false positive rates drop by up to 72%. This is a core pillar of Zero Trust Architecture and addresses the root cause rather than just managing the symptoms.</p>
+      <h3>💡 Fix: Micro-Segmentation + Rule Tuning (Part of Zero Trust)</h3>
+      <p>Dividing the network into small isolated zones means each NIDS sensor monitors a fraction of total traffic, dramatically reducing false positive rates by up to 72%. Combined with regular rule tuning specific to each zone, this is a core pillar of Zero Trust Architecture.</p>
     </div>
   </div>
 </div>
@@ -138,37 +164,27 @@
 <div class="cs" id="tab-social">
   <div class="wrap">
     <div class="th"><span class="ti">🎭</span><div><h2>Social Engineering Attacks</h2><p>Researched by Yao Koumako</p></div></div>
-
     <h3 class="sh">What Is Social Engineering?</h3>
-    <p class="b">Social engineering is the practice of manipulating people rather than systems into revealing confidential information or taking actions that compromise security. Instead of exploiting a software vulnerability, attackers exploit <strong>human psychology</strong>: trust, urgency, authority, and fear. The result is that even the most technically hardened network can be breached the moment a single employee clicks the wrong link or answers the wrong phone call.</p>
-
+    <p class="b">Social engineering is the practice of manipulating people — rather than systems — into revealing confidential information or taking actions that compromise security. Instead of exploiting a software vulnerability, attackers exploit <strong>human psychology</strong>: trust, urgency, authority, and fear.</p>
     <iframe src="phishing.html" style="width:100%;height:580px;border:none;border-radius:10px;margin:1.5rem 0;"></iframe>
-
     <h3 class="sh">Who Does It Affect?</h3>
-    <p class="b">Social engineering affects every organization regardless of size or technical sophistication. <strong>Large enterprises</strong> are targeted through executive impersonation (CEO fraud) and supply chain attacks. <strong>Healthcare workers</strong> are frequently targeted because they handle both financial data and sensitive patient records and are often too busy to scrutinize every communication. <strong>New employees</strong> are prime targets they don't yet know all their colleagues and are more likely to comply with requests that seem to come from management. <strong>IT helpdesk staff</strong> are specifically targeted because they have the access and authority to reset credentials and grant system access.</p>
-
+    <p class="b"><strong>Large enterprises</strong> are targeted through executive impersonation and supply chain attacks. <strong>Healthcare workers</strong> handle both financial and patient data and are frequently too busy to scrutinize every communication. <strong>New employees</strong> don't yet know all colleagues and are more likely to comply with requests that seem to come from management. <strong>IT helpdesk staff</strong> are specifically targeted because they have authority to reset credentials and grant access.</p>
     <div class="stat-row">
-      <div class="sbox r"><span class="n">~74%</span><span class="l">of breaches involve the human element</span></div>
+      <div class="sbox r"><span class="n">74%</span><span class="l">of breaches involve the human element</span></div>
       <div class="sbox r"><span class="n">3.4B</span><span class="l">phishing emails sent every single day</span></div>
-      <div class="sbox r"><span class="n">&lt;60s</span><span class="l">median time to click a phishing link after it's sent</span></div>
+      <div class="sbox r"><span class="n">&lt;60s</span><span class="l">median time to click a phishing link</span></div>
     </div>
-
-    <div class="callout r">
-      Research establishes that "the human factor remains the weakest link in the security chain, as psychological triggers often override technical safeguards." Attackers exploit cognitive biases urgency, authority, and reciprocity that are deeply embedded in human decision-making and cannot be patched with a software update.
-      <cite>— Wang et al., IEEE Access, vol. 9, 2021 [2]</cite>
-    </div>
-
+    <div class="callout r">Research establishes that "the human factor remains the weakest link in the security chain, as psychological triggers often override technical safeguards." Attackers exploit cognitive biases — urgency, authority, and reciprocity — that cannot be patched with a software update.<cite>— Wang et al., IEEE Access, vol. 9, 2021 [2]</cite></div>
     <h3 class="sh">How Attackers Get In</h3>
     <div class="steps">
-      <div class="step"><span class="sn r">01</span><div class="sb"><h4>Phishing Emails</h4><p>Deceptive messages impersonating trusted entities banks, IT departments, executives designed to steal credentials, install malware, or redirect users to fake login pages. Modern phishing is highly targeted (spear phishing) using personal details from LinkedIn and social media.</p></div></div>
-      <div class="step"><span class="sn r">02</span><div class="sb"><h4>MFA Fatigue Attacks</h4><p>Attacker already has a valid username and password (stolen or guessed). They trigger repeated multi-factor authentication push notifications until the victim approves one out of frustration or confusion completely bypassing what should be an impenetrable security layer.</p></div></div>
-      <div class="step"><span class="sn r">03</span><div class="sb"><h4>Vishing & Pretexting</h4><p>Phone calls from attackers posing as IT staff, vendors, or executives. They construct a believable pretext "I need your credentials to fix your account before it's locked" and exploit authority and urgency to bypass the victim's natural suspicion.</p></div></div>
-      <div class="step"><span class="sn r">04</span><div class="sb"><h4>Credential Harvesting via NIDS Fatigue</h4><p>Directly connects to the NIDS problem: when security teams are drowning in false positive alerts, the behavioral anomaly of a socially engineered employee accessing unusual systems at unusual times is far more likely to go unnoticed. Both weaknesses feed each other.</p></div></div>
+      <div class="step"><span class="sn r">01</span><div class="sb"><h4>Phishing Emails</h4><p>Deceptive messages impersonating trusted entities designed to steal credentials or redirect users to fake login pages. Modern spear phishing uses personal details from LinkedIn to feel targeted and real.</p></div></div>
+      <div class="step"><span class="sn r">02</span><div class="sb"><h4>MFA Fatigue Attacks</h4><p>Attacker already has valid credentials. They trigger repeated MFA push notifications until the victim approves one out of frustration — bypassing what should be a strong security layer.</p></div></div>
+      <div class="step"><span class="sn r">03</span><div class="sb"><h4>Vishing & Pretexting</h4><p>Phone calls from attackers posing as IT staff or executives. They construct a believable scenario — "I need your credentials to fix your account before it locks" — and exploit urgency.</p></div></div>
+      <div class="step"><span class="sn r">04</span><div class="sb"><h4>Exploiting NIDS Alert Fatigue</h4><p>When security teams are drowning in false positive alerts, behavioral anomalies from a socially engineered employee accessing unusual systems are far more likely to go unnoticed.</p></div></div>
     </div>
-
     <div class="sol-box">
-      <h3>💡 Proposed Fix: Hardware Security Keys + Zero Trust Identity Verification</h3>
-      <p>Physical FIDO2/WebAuthn hardware keys require the attacker to physically possess the device MFA fatigue attacks become impossible. Paired with Zero Trust's continuous identity verification (device health checks, behavioral analytics, location signals), even fully stolen credentials cannot grant access without the physical key and verified device. This is the most direct technical solution to social engineering's core exploit vector.</p>
+      <h3>💡 Fix: Hardware Security Keys + Zero Trust Identity Verification</h3>
+      <p>Physical FIDO2/WebAuthn hardware keys require the attacker to physically possess the device — MFA fatigue attacks become impossible. Paired with Zero Trust continuous verification, even fully stolen credentials cannot grant access without the physical key and verified device.</p>
     </div>
   </div>
 </div>
@@ -176,41 +192,156 @@
 <!-- HIDDEN ISSUES TAB -->
 <div class="cs" id="tab-hidden">
   <div class="wrap">
-    <div class="th"><span class="ti">⚠️</span><div><h2>Hidden Issues Nobody Talks About</h2><p>The gaps that exist beyond false positives and phishing</p></div></div>
-
-    <div class="callout warn">
-      These are the problems that persist even after organizations address false positives and implement basic social engineering training the blind spots that sophisticated attackers actively exploit.
-    </div>
-
+    <div class="th"><span class="ti">⚠️</span><div><h2>Hidden Issues Nobody Talks About</h2><p>The gaps that persist even after basic fixes are in place</p></div></div>
+    <div class="callout warn">These are the blind spots that sophisticated attackers actively exploit — problems that exist beyond false positives and phishing that most organizations never address.</div>
     <div class="also-grid">
-      <div class="also"><div class="ic">👻</div><h4>False Negatives</h4><p>The dangerous flip side of false positives a real attack the NIDS says nothing about. When analysts are conditioned to expect mostly false alarms, they stop scrutinizing the absence of alerts. Attackers who know a NIDS's signature database can craft attacks it simply won't recognize.</p></div>
-      <div class="also"><div class="ic">🔐</div><h4>Encrypted Traffic Blindness</h4><p>The majority of internet traffic is now HTTPS/TLS encrypted. A traditional NIDS cannot inspect the contents of encrypted packets without a dedicated decryption layer. Any attack payload hidden inside encrypted traffic is effectively invisible and most deployments don't address this gap at all.</p></div>
-      <div class="also"><div class="ic">👤</div><h4>Insider Threats</h4><p>NIDS is designed to catch external attackers coming inward. A malicious or compromised employee already inside the network, moving laterally with legitimate credentials, generates no suspicious traffic signatures. This is completely outside what most NIDS configurations are built to detect.</p></div>
-      <div class="also"><div class="ic">☁️</div><h4>Cloud Environment Gaps</h4><p>Traditional NIDS assumes a physical network with a defined perimeter. As organizations move to AWS, Azure, and hybrid cloud environments, the perimeter disappears. Signature-based detection becomes far less effective in environments where traffic patterns are fundamentally different.</p></div>
-      <div class="also"><div class="ic">💸</div><h4>Compliance Cost Spiral</h4><p>Organizations with excessive false positive rates fail security audits (HIPAA, PCI-DSS, SOC 2) and must pay for remediation consultants. The direct financial cost of managing false positives analyst hours, auto-blocked services, compliance failures often exceeds the cost of implementing a proper fix.</p></div>
-      <div class="also"><div class="ic">🌐</div><h4>IPv6 & Protocol Gaps</h4><p>Many NIDS signature databases are built around IPv4 attack patterns. As IPv6 adoption grows, large gaps in signature coverage emerge. Attackers using IPv6 tunneling or protocol-specific evasion techniques can bypass detection on systems whose rules haven't been updated for modern network standards.</p></div>
+      <div class="also"><div class="ic">👻</div><h4>False Negatives</h4><p>The dangerous flip side — a real attack the NIDS says nothing about. Analysts conditioned to expect false alarms stop scrutinizing the absence of alerts. Attackers who know a NIDS's signature database can craft attacks it simply won't recognize.</p></div>
+      <div class="also"><div class="ic">🔐</div><h4>Encrypted Traffic Blindness</h4><p>The majority of internet traffic is HTTPS/TLS encrypted. A traditional NIDS cannot inspect encrypted packets without a decryption layer. Any attack hidden inside encrypted traffic is effectively invisible.</p></div>
+      <div class="also"><div class="ic">👤</div><h4>Insider Threats</h4><p>NIDS watches for external attackers. A malicious or compromised employee already inside the network, moving laterally with legitimate credentials, generates no suspicious traffic signatures at all.</p></div>
+      <div class="also"><div class="ic">☁️</div><h4>Cloud Environment Gaps</h4><p>Traditional NIDS assumes a physical network with a defined perimeter. As organizations move to AWS, Azure, and hybrid cloud, the perimeter disappears and signature-based detection becomes far less effective.</p></div>
+      <div class="also"><div class="ic">💸</div><h4>Compliance Cost Spiral</h4><p>Organizations with excessive false positive rates fail security audits and must pay for remediation consultants. The financial cost of managing false positives — analyst hours, auto-blocked services, compliance failures — often exceeds the cost of fixing it.</p></div>
+      <div class="also"><div class="ic">🌐</div><h4>IPv6 & Protocol Gaps</h4><p>Many NIDS signature databases are built around IPv4 attack patterns. As IPv6 adoption grows, large gaps emerge. Attackers using IPv6 tunneling or protocol-specific evasion can bypass detection entirely.</p></div>
     </div>
-
     <div class="sol-box">
       <h3>💡 Why Zero Trust Addresses These Too</h3>
-      <p>Zero Trust's "assume breach" principle means the system operates as if an attacker is always already inside making it far more effective against false negatives, insider threats, and encrypted traffic than traditional perimeter-based NIDS configurations. By verifying every access request at the identity and device level rather than relying solely on traffic signatures, Zero Trust catches behavioral anomalies that signature-based systems miss entirely.</p>
+      <p>Zero Trust's "assume breach" principle means the system operates as if an attacker is always already inside — making it far more effective against false negatives, insider threats, and encrypted traffic than traditional perimeter-based NIDS. By verifying every access request at the identity and device level, Zero Trust catches behavioral anomalies that signature-based systems miss entirely.</p>
     </div>
   </div>
 </div>
 
+<!-- FULL REPORT TAB -->
+<div class="cs" id="tab-report">
+  <div class="wrap">
+
+    <div class="report-title">Zero Trust as a Solution to<br/><span>NIDS &amp; Social Engineering</span></div>
+    <div class="report-meta">
+      <div class="meta-item"><span class="meta-dot"></span>Deacon Twene</div>
+      <div class="meta-item"><span class="meta-dot"></span>Nicolas Komarov</div>
+      <div class="meta-item"><span class="meta-dot"></span>Yao Koumako</div>
+      <div class="meta-item"><span class="meta-dot"></span>City Tech · May 2026</div>
+      <div class="meta-item"><span class="meta-dot"></span>Prof. Ellis</div>
+    </div>
+
+    <div class="toc">
+      <div class="toc-title">// Contents</div>
+      <div class="toc-grid">
+        <a href="#r-intro" class="toc-item"><span class="toc-num">01</span><span class="toc-label">Introduction</span></a>
+        <a href="#r-background" class="toc-item"><span class="toc-num">02</span><span class="toc-label">Research Background</span></a>
+        <a href="#r-problem" class="toc-item"><span class="toc-num">03</span><span class="toc-label">The Core Problem</span></a>
+        <a href="#r-methodology" class="toc-item"><span class="toc-num">04</span><span class="toc-label">Research Methodology</span></a>
+        <a href="#r-solution" class="toc-item"><span class="toc-num">05</span><span class="toc-label">Zero Trust Solution</span></a>
+        <a href="#r-development" class="toc-item"><span class="toc-num">06</span><span class="toc-label">Website Development</span></a>
+        <a href="#r-contributions" class="toc-item"><span class="toc-num">07</span><span class="toc-label">Team Contributions</span></a>
+        <a href="#r-conclusion" class="toc-item"><span class="toc-num">08</span><span class="toc-label">Conclusion</span></a>
+      </div>
+    </div>
+
+    <div class="rsec" id="r-intro">
+      <span class="rsec-tag">// 01</span>
+      <div class="rsec-title">Introduction</div>
+      <p class="rp">For our collaborative technical writing and cybersecurity research project, our team focused on two major cybersecurity issues that continue to affect modern organizations: <strong>high false positive rates in Network Intrusion Detection Systems (NIDS)</strong> and <strong>social engineering attacks</strong> such as phishing. The purpose of this project was to analyze how these two problems impact organizations, examine how they are interconnected, and develop an educational cybersecurity website presenting Zero Trust Architecture as a unified solution.</p>
+      <p class="rp">The project combined formal research, technical analysis, web development, visual communication, and collaborative presentation design to produce a practical and informative cybersecurity resource that satisfies both the academic goals of the course and delivers real value to anyone learning about network security.</p>
+    </div>
+
+    <div class="rsec" id="r-background">
+      <span class="rsec-tag">// 02</span>
+      <div class="rsec-title">Research Background</div>
+      <p class="rp">The project began with each team member contributing individual research on a specific cybersecurity problem. <strong>Nicolas Komarov</strong> researched false positive rates in Network Intrusion Detection Systems, while <strong>Yao Koumako</strong> focused on phishing and social engineering attacks. After analyzing both papers, the team identified a significant relationship between the two problems that became the foundation of the entire project.</p>
+      <div class="stat-row">
+        <div class="sbox g"><span class="n">92.85%</span><span class="l">of false IDS cases in live deployments are false positives [1]</span></div>
+        <div class="sbox g"><span class="n">74%</span><span class="l">of all data breaches involve the human element [Verizon 2023]</span></div>
+        <div class="sbox g"><span class="n">$4.45M</span><span class="l">average cost of a data breach in 2023 [IBM]</span></div>
+      </div>
+      <p class="rp">Nicolas's research showed that modern intrusion detection systems generate overwhelming volumes of false alarms, burying real threats in noise and exhausting the analysts responsible for reviewing them. Yao's research showed how attackers exploit human psychology — urgency, authority, and trust — to bypass technical defenses entirely through phishing, MFA fatigue, and impersonation.</p>
+    </div>
+
+    <div class="rsec" id="r-problem">
+      <span class="rsec-tag">// 03</span>
+      <div class="rsec-title">The Core Problem: Two Vulnerabilities, One Gap</div>
+      <p class="rp">Although both issues originate from different areas of information security, they directly feed each other in real-world environments. This connection became the central analytical foundation of the project.</p>
+      <div class="highlight">
+        <p><strong>The chain:</strong> High false positive rates create alert fatigue — analysts become desensitized and less responsive to genuine warnings. Social engineering attacks take direct advantage of this exhaustion, manipulating users into trusting malicious communications precisely when their vigilance is lowest. <strong>Technical vulnerabilities and human vulnerabilities amplify each other.</strong></p>
+      </div>
+      <p class="rp">When a NIDS floods analysts with thousands of meaningless alerts per day, a real attack buried in that noise is far more likely to go uninvestigated. And when an attacker knows that security teams are overwhelmed, a well-crafted phishing email has a significantly higher chance of success.</p>
+      <div class="rq"><p>"The human factor remains the weakest link in the security chain, as psychological triggers often override technical safeguards." — Wang et al., IEEE Access, 2021 [2]</p></div>
+    </div>
+
+    <div class="rsec" id="r-methodology">
+      <span class="rsec-tag">// 04</span>
+      <div class="rsec-title">Research Methodology</div>
+      <p class="rp">After identifying this connection, the team conducted additional research to determine whether a single cybersecurity framework could address both problems simultaneously. This involved reviewing scholarly papers, IEEE research journals, enterprise cybersecurity reports, government frameworks, and technical documentation from major technology organizations.</p>
+      <div class="steps">
+        <div class="step"><span class="sn b">01</span><div class="sb"><h4>Academic Sources</h4><p>IEEE Communications Magazine and IEEE Access for peer-reviewed findings on NIDS false positives and social engineering mechanisms.</p></div></div>
+        <div class="step"><span class="sn b">02</span><div class="sb"><h4>Industry Reports</h4><p>IBM Cost of a Data Breach 2023, Verizon DBIR 2023, Microsoft Zero Trust Adoption Report 2024, and Gartner/Forrester research.</p></div></div>
+        <div class="step"><span class="sn b">03</span><div class="sb"><h4>Government Standards</h4><p>NIST Special Publication 800-207 and Executive Order 14028 for the official federal Zero Trust framework and mandate.</p></div></div>
+        <div class="step"><span class="sn b">04</span><div class="sb"><h4>Enterprise Case Studies</h4><p>Technical documentation from Google (BeyondCorp), Microsoft, Cloudflare, Okta, and Palo Alto Networks.</p></div></div>
+      </div>
+    </div>
+
+    <div class="rsec" id="r-solution">
+      <span class="rsec-tag">// 05</span>
+      <div class="rsec-title">Proposed Solution: Zero Trust Architecture</div>
+      <p class="rp">Through this research, <strong>Zero Trust Architecture</strong> emerged as the strongest and most comprehensive solution to both cybersecurity issues. Zero Trust operates on the principle of <strong>"never trust, always verify"</strong> — no user, device, or connection is automatically trusted regardless of whether it originates from inside or outside the network.</p>
+      <p class="rp">The framework addresses the false positive problem through <strong>micro-segmentation</strong> — reducing false positive alert volume by up to 72–78% with full implementation. It addresses social engineering through <strong>continuous authentication</strong> combining hardware security keys, device health checks, and least-privilege access. Even fully compromised credentials cannot grant access without the physical hardware key.</p>
+      <div class="highlight">
+        <p><strong>Real-world adoption:</strong> Google eliminated VPN entirely through BeyondCorp. Microsoft enforces Zero Trust across 220,000+ employees. The U.S. Federal Government mandated ZTA for all agencies via Executive Order 14028. IBM data shows mature ZTA saves organizations an average of <strong>$1.76M per breach.</strong></p>
+      </div>
+    </div>
+
+    <div class="rsec" id="r-development">
+      <span class="rsec-tag">// 06</span>
+      <div class="rsec-title">Website Design and Development</div>
+      <p class="rp"><strong>Nicolas Komarov</strong> designed and developed the complete website using HTML and CSS, deploying it on GitHub Pages. The site presents complex cybersecurity research in a way that is accessible to both technical and non-technical audiences — using interactive sections, animated statistical charts, real-world case studies, and original visual demonstrations.</p>
+      <p class="rp">All visual content was created originally for the project — including a <strong>simulated NIDS alert dashboard</strong> showing 847 alerts of which 786 are false positives, and an <strong>annotated phishing email demonstration</strong> walking through exactly how a real social engineering attack is constructed and why it works psychologically. The site exceeds all assignment requirements with more than 3 pages, original illustrations, IEEE citations, hyperlinks throughout, and a professional design that functions as a genuine cybersecurity education resource.</p>
+    </div>
+
+    <div class="rsec" id="r-contributions">
+      <span class="rsec-tag">// 07</span>
+      <div class="rsec-title">Team Contributions</div>
+      <div class="team-contrib">
+        <div class="contrib">
+          <div class="cname">Nicolas Komarov</div>
+          <div class="crole">// NIDS Researcher · Website Developer · Oral Presenter</div>
+          <p>Researched false positive rates in NIDS and identified the connection between alert fatigue and social engineering vulnerability. Proposed Zero Trust Architecture as the unified solution and verified all statistics from IBM, Verizon, Microsoft, NIST, and Gartner. Designed and built the entire website — all HTML and CSS pages, animated charts, interactive dashboards, embedded mockups, GitHub repository setup, and GitHub Pages deployment. Presents the NIDS and technical sections during the oral presentation.</p>
+        </div>
+        <div class="contrib">
+          <div class="cname">Yao Koumako</div>
+          <div class="crole">// Social Engineering Researcher · Oral Presenter</div>
+          <p>Researched phishing attacks, MFA fatigue, pretexting, and social engineering methods. Contributed the social engineering content that forms a core section of the website, including the analysis of human psychological vulnerabilities exploited by attackers. Presents the social engineering portion of the project during the oral presentation.</p>
+        </div>
+        <div class="contrib">
+          <div class="cname">Deacon Twene</div>
+          <div class="crole">// Report Author · Quality Control · Oral Presenter</div>
+          <p>Authored the collaborative team report synthesizing both research areas into a unified written narrative. Conducted quality control review of website content and presentation materials, ensuring accuracy and consistency across all deliverables. Coordinates oral presentation delivery alongside both team members.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="rsec" id="r-conclusion">
+      <span class="rsec-tag">// 08</span>
+      <div class="rsec-title">Conclusion</div>
+      <div class="conclusion-banner">
+        <h3>// Final Takeaway</h3>
+        <p>This project successfully combined cybersecurity research, technical writing, analytical problem solving, web development, and collaborative teamwork into a single integrated academic deliverable. The team demonstrated that NIDS false positives and social engineering attacks are not isolated problems — they compound each other, and addressing only one leaves organizations significantly exposed.</p>
+        <p>Zero Trust Architecture provides a proven, scalable, and already widely-adopted framework that closes both gaps simultaneously. Organizations that implement it are measurably better protected — according to real-world data from IBM, Verizon, Microsoft, and the U.S. federal government.</p>
+        <p>The final website reflects the technical and analytical goals of the assignment while producing a resource with genuine practical value for students, IT professionals, and organizations navigating real cybersecurity challenges.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
 <footer>
-  <span>// NIDScybersecurity-hub · City Tech</span>
-  <span><a href="solution.html">View Solution →</a></span>
+  <span>// NIDScybersecurity-hub · City Tech · Prof. Ellis</span>
+  <span>N. Komarov · Y. Koumako · D. Twene · <a href="references.html">References →</a></span>
 </footer>
 
 <script>
-  function show(id, btn) {
+  function show(id, cls, btn) {
     document.querySelectorAll('.cs').forEach(s => s.classList.remove('vis'));
-    document.querySelectorAll('.tb').forEach(b => b.classList.remove('ag','ar'));
+    document.querySelectorAll('.tb').forEach(b => { b.classList.remove('ag','ar','aw','ab'); });
     document.getElementById('tab-'+id).classList.add('vis');
-    if(id==='nids') btn.classList.add('ag');
-    else if(id==='social') btn.classList.add('ar');
-    else { btn.style.background='rgba(255,180,0,.08)'; btn.style.color='#ffb400'; btn.style.borderColor='#ffb400'; }
+    btn.classList.add(cls);
   }
 </script>
 </body>
