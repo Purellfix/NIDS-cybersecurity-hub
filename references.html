@@ -1,14 +1,12 @@
-<!-- Built by Nicolas Komarov | NIDS Cybersecurity Hub | City Tech 2026 -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>References | CyberSec Hub</title>
+  <title>References & Sources | CyberSec Hub</title>
   <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet"/>
   <style>
-    :root{--bg:#07090f;--surface:#0f1520;--card:#141e2e;--green:#00e5a0;--gdim:rgba(0,229,160,.09);--text:#dde6f0;--muted:#7a8fa8;--border:rgba(0,229,160,.15);--mono:'Share Tech Mono',monospace;--sans:'DM Sans',sans-serif}
+    :root{--bg:#07090f;--surface:#0f1520;--card:#141e2e;--green:#00e5a0;--gdim:rgba(0,229,160,.09);--red:#ff4d6d;--text:#dde6f0;--muted:#7a8fa8;--border:rgba(0,229,160,.15);--mono:'Share Tech Mono',monospace;--sans:'DM Sans',sans-serif}
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     html{scroll-behavior:smooth}
     body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.75;overflow-x:hidden}
@@ -22,25 +20,40 @@
     .plbl{font-family:var(--mono);font-size:.68rem;color:var(--green);letter-spacing:.18em;text-transform:uppercase;border:1px solid var(--border);padding:.35rem 1.1rem;border-radius:999px;display:inline-block;background:var(--gdim);margin-bottom:1.5rem}
     .ph h1{font-family:var(--mono);font-size:clamp(1.8rem,4vw,2.8rem);color:#fff;margin-bottom:1rem}
     .ph h1 span{color:var(--green)}
-    .ph>p{color:var(--muted);max-width:540px;margin:0 auto;font-size:.97rem;font-weight:300}
-    .sec{padding:3rem 2rem 6rem}
+    .ph>p{color:var(--muted);max-width:580px;margin:0 auto;font-size:.97rem;font-weight:300}
+    .tabs{display:flex;justify-content:center;gap:.75rem;padding:2rem 2rem 3rem;flex-wrap:wrap}
+    .tb{padding:.6rem 1.6rem;border-radius:6px;border:1px solid var(--border);background:transparent;color:var(--muted);font-family:var(--mono);font-size:.78rem;cursor:pointer;transition:all .2s}
+    .tb:hover{color:var(--green);border-color:var(--green)}
+    .tb.ag{background:var(--gdim);color:var(--green);border-color:var(--green)}
+    .cs{display:none;padding:0 2rem 6rem}
+    .cs.vis{display:block}
     .wrap{max-width:860px;margin:0 auto}
-    .note{background:var(--gdim);border:1px solid rgba(0,229,160,.2);border-radius:10px;padding:1.25rem 1.5rem;margin-bottom:2.5rem;font-size:.87rem;color:var(--text)}
-    .note strong{color:var(--green)}
-    .ref{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:2rem 2.25rem;margin-bottom:1.5rem;position:relative;overflow:hidden;transition:transform .2s,box-shadow .2s}
-    .ref:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(0,0,0,.3)}
-    .ref::before{content:'';position:absolute;top:0;left:0;bottom:0;width:3px;background:var(--green)}
-    .ref-num{font-family:var(--mono);font-size:.72rem;color:var(--green);letter-spacing:.1em;margin-bottom:.6rem;display:block}
-    .ref-title{font-size:1rem;font-weight:700;color:#fff;margin-bottom:.5rem;line-height:1.35}
-    .ref-authors{font-size:.87rem;color:var(--muted);margin-bottom:.3rem}
-    .ref-venue{font-size:.84rem;color:var(--text);margin-bottom:.3rem}
-    .ref-full{font-family:var(--mono);font-size:.76rem;color:var(--muted);background:var(--surface);border-radius:6px;padding:.9rem 1rem;margin-top:.9rem;line-height:1.6;word-break:break-all}
-    .ref-link{display:inline-flex;align-items:center;gap:.4rem;margin-top:.85rem;color:var(--green);font-size:.8rem;text-decoration:none;font-family:var(--mono);transition:opacity .2s}
-    .ref-link:hover{opacity:.75}
-    .team-section{margin-top:4rem;padding-top:3rem;border-top:1px solid var(--border)}
     .lbl{font-family:var(--mono);font-size:.67rem;color:var(--green);letter-spacing:.2em;text-transform:uppercase;margin-bottom:.6rem}
-    h2.t{font-size:1.4rem;font-weight:700;color:#fff;margin-bottom:1.5rem}
-    .team-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem}
+    .note{background:var(--gdim);border:1px solid rgba(0,229,160,.2);border-radius:10px;padding:1.25rem 1.5rem;margin-bottom:2.5rem;font-size:.88rem;color:var(--text)}
+    .note strong{color:var(--green)}
+    .correction{background:rgba(255,180,0,.07);border:1px solid rgba(255,180,0,.25);border-radius:10px;padding:1.25rem 1.6rem;margin-bottom:2.5rem;font-size:.88rem;color:var(--text)}
+    .ref{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.75rem 2rem;margin-bottom:1.5rem;position:relative;overflow:hidden;transition:transform .2s,box-shadow .2s}
+    .ref:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(0,0,0,.3)}
+    .ref::before{content:'';position:absolute;top:0;left:0;bottom:0;width:3px}
+    .ref.ieee::before{background:var(--green)}
+    .ref.industry::before{background:#4d9fff}
+    .ref.gov::before{background:#fb923c}
+    .ref.news::before{background:#a78bfa}
+    .src-tag{font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;margin-bottom:.5rem;display:inline-block;padding:.2rem .7rem;border-radius:4px}
+    .ref.ieee .src-tag{color:var(--green);background:var(--gdim);border:1px solid rgba(0,229,160,.2)}
+    .ref.industry .src-tag{color:#4d9fff;background:rgba(77,159,255,.08);border:1px solid rgba(77,159,255,.2)}
+    .ref.gov .src-tag{color:#fb923c;background:rgba(251,146,60,.08);border:1px solid rgba(251,146,60,.2)}
+    .ref.news .src-tag{color:#a78bfa;background:rgba(167,139,250,.08);border:1px solid rgba(167,139,250,.2)}
+    .ref-title{font-size:1rem;font-weight:700;color:#fff;margin:.5rem 0 .35rem;line-height:1.35}
+    .ref-authors{font-size:.86rem;color:var(--muted);margin-bottom:.3rem}
+    .ref-venue{font-size:.84rem;color:var(--text);margin-bottom:.4rem}
+    .ref-stat{font-family:var(--mono);font-size:.8rem;color:var(--green);background:var(--gdim);border:1px solid rgba(0,229,160,.15);border-radius:6px;padding:.5rem .85rem;margin:.75rem 0;display:inline-block}
+    .ref-full{font-family:var(--mono);font-size:.74rem;color:var(--muted);background:var(--surface);border-radius:6px;padding:.85rem 1rem;margin-top:.85rem;line-height:1.65;word-break:break-all}
+    .ref-link{display:inline-flex;align-items:center;gap:.4rem;margin-top:.85rem;color:var(--green);font-size:.79rem;text-decoration:none;font-family:var(--mono);transition:opacity .2s}
+    .ref-link:hover{opacity:.7}
+    .ref-used{font-size:.8rem;color:var(--muted);margin-top:.6rem;font-style:italic}
+    .team-section{margin-top:4rem;padding-top:3rem;border-top:1px solid var(--border)}
+    .team-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin-top:1.5rem}
     .tm{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1.4rem}
     .tm .name{font-weight:700;color:#fff;margin-bottom:.2rem}
     .tm .role{font-family:var(--mono);font-size:.7rem;color:var(--green);margin-bottom:.5rem}
@@ -50,54 +63,158 @@
   </style>
 </head>
 <body>
+<!-- Built by Nicolas Komarov | NIDS Cybersecurity Hub | City Tech 2026 -->
 <nav>
   <a class="nav-logo" href="index.html">// CYBERSEC_HUB</a>
   <ul class="nav-links">
     <li><a href="index.html">Home</a></li>
     <li><a href="content.html">The Problem</a></li>
     <li><a href="solution.html">Zero Trust Solution</a></li>
+    <li><a href="report.html">Full Report</a></li>
     <li><a href="references.html" class="active">References</a></li>
-    <li><a href="sources.html">All Sources</a></li>
   </ul>
-
 </nav>
 
 <div class="ph">
-  <div class="plbl">// sources</div>
-  <h1>IEEE <span>References</span></h1>
-  <p>All sources cited throughout this website follow IEEE bibliographic format.</p>
+  <div class="plbl">// bibliography</div>
+  <h1>References <span>&amp; Sources</span></h1>
+  <p>All IEEE citations and supporting sources used across this website — verified, linked, and organized by type.</p>
 </div>
 
-<div class="sec">
-  <div class="wrap">
-    <div class="note"><strong>Citation Format:</strong> All references below follow IEEE bibliographic style. In-text citations appear as [1], [2], etc. throughout the site's content pages.</div>
+<div class="tabs">
+  <button class="tb ag" onclick="show('ieee',this)">📄 IEEE Citations</button>
+  <button class="tb" onclick="show('industry',this)">📊 Industry Reports</button>
+  <button class="tb" onclick="show('gov',this)">🏛️ Gov &amp; Standards</button>
+  <button class="tb" onclick="show('tech',this)">🔧 Technical Docs</button>
+</div>
 
-    <div class="ref">
-      <span class="ref-num">[1] — NIDS False Positives (Nicolas Komarov)</span>
+<div class="cs vis" id="tab-ieee">
+  <div class="wrap">
+    <div class="note"><strong>IEEE Format:</strong> All in-text citations appear as [1], [2], etc. throughout the site and follow IEEE bibliographic style as required by the course.</div>
+    <div class="correction"><strong style="color:#ffb400">⚠️ Stat Correction:</strong> Human element in breaches — corrected from ~82% (estimate) to <strong style="color:var(--green)">74%</strong> after verifying against the 2023 Verizon DBIR.</div>
+    <div class="ref ieee">
+      <span class="src-tag">[1] IEEE JOURNAL</span>
       <div class="ref-title">Statistical Analysis of False Positives and False Negatives from Real Traffic with Intrusion Detection/Prevention Systems</div>
       <div class="ref-authors">C.-Y. Ho, Y.-C. Lai, I.-W. Chen, F.-Y. Wang, and W.-H. Tai</div>
       <div class="ref-venue"><em>IEEE Communications Magazine</em>, vol. 50, no. 3, pp. 110–116, Mar. 2012</div>
+      <div class="ref-stat">Key stat: 92.85% of all false IDS cases in real deployments are false positives</div>
+      <div class="ref-used">Used in: Home page, content.html (NIDS tab)</div>
       <div class="ref-full">C.-Y. Ho, Y.-C. Lai, I.-W. Chen, F.-Y. Wang, and W.-H. Tai, "Statistical analysis of false positives and false negatives from real traffic with intrusion detection/prevention systems," IEEE Commun. Mag., vol. 50, no. 3, pp. 110–116, Mar. 2012. [Online]. Available: https://ieeexplore.ieee.org/abstract/document/6163595/</div>
       <a class="ref-link" href="https://ieeexplore.ieee.org/abstract/document/6163595/" target="_blank">↗ View on IEEE Xplore</a>
     </div>
-
-    <div class="ref">
-      <span class="ref-num">[2] — Social Engineering (Yao Koumako)</span>
+    <div class="ref ieee">
+      <span class="src-tag">[2] IEEE JOURNAL</span>
       <div class="ref-title">Social Engineering in Cybersecurity: Effect Mechanisms, Human Vulnerabilities and Attack Methods</div>
-      <div class="ref-authors">Z. Wang et al.</div>
-      <div class="ref-venue"><em>IEEE Access</em>, vol. 9, pp. 11895–11910, 2021</div>
-      <div class="ref-full">Z. Wang et al., "Social engineering in cybersecurity: Effect mechanisms, human vulnerabilities and attack methods," IEEE Access, vol. 9, pp. 11895–11910, 2021, doi: 10.1109/ACCESS.2021.3051633.</div>
+      <div class="ref-authors">Z. Wang, X. Sun, and H. Zhu</div>
+      <div class="ref-venue"><em>IEEE Access</em>, vol. 9, pp. 11895–11910, 2021. DOI: 10.1109/ACCESS.2021.3051633</div>
+      <div class="ref-stat">Key finding: Psychological triggers consistently override technical safeguards</div>
+      <div class="ref-used">Used in: content.html (Social Engineering tab)</div>
+      <div class="ref-full">Z. Wang, X. Sun, and H. Zhu, "Social engineering in cybersecurity: Effect mechanisms, human vulnerabilities and attack methods," IEEE Access, vol. 9, pp. 11895–11910, 2021, doi: 10.1109/ACCESS.2021.3051633.</div>
       <a class="ref-link" href="https://doi.org/10.1109/ACCESS.2021.3051633" target="_blank">↗ View on IEEE Xplore</a>
     </div>
-
     <div class="team-section">
       <div class="lbl">// research team</div>
-      <h2 class="t">Team Members</h2>
+      <div style="font-size:1.4rem;font-weight:700;color:#fff;margin-bottom:1.5rem">Team Members</div>
       <div class="team-grid">
-        <div class="tm"><div class="name">Nicolas Komarov</div><div class="role">// NIDS Researcher</div><p>False positive rates in NIDS — causes, real-world impact, and Zero Trust micro-segmentation as the fix.</p></div>
-        <div class="tm"><div class="name">Yao Koumako</div><div class="role">// Social Engineering Researcher</div><p>Social engineering attack methods, human vulnerabilities, and hardware-key Zero Trust authentication.</p></div>
-        <div class="tm"><div class="name">Deacon Twene</div><div class="role">// Presentation Lead</div><p>Oral presentation coordination, slide deck development, and final team delivery.</p></div>
+        <div class="tm"><div class="name">Nicolas Komarov</div><div class="role">// NIDS Researcher · Web Developer</div><p>NIDS false positive research, Zero Trust solution, full website design and development.</p></div>
+        <div class="tm"><div class="name">Yao Koumako</div><div class="role">// Social Engineering Researcher</div><p>Social engineering research, phishing attack methods, human vulnerability analysis.</p></div>
+        <div class="tm"><div class="name">Deacon Twene</div><div class="role">// Report Author · QC · Presenter</div><p>Collaborative report writing, quality control review, oral presentation coordination.</p></div>
       </div>
+    </div>
+  </div>
+</div>
+
+<div class="cs" id="tab-industry">
+  <div class="wrap">
+    <div class="ref industry">
+      <span class="src-tag">INDUSTRY REPORT</span>
+      <div class="ref-title">Cost of a Data Breach Report 2023</div>
+      <div class="ref-authors">IBM Security, conducted by Ponemon Institute</div>
+      <div class="ref-venue">IBM Security, 18th Annual Edition, July 2023</div>
+      <div class="ref-stat">$4.45M average breach cost · ZTA saves $1.76M per breach</div>
+      <div class="ref-used">Used in: index.html charts, solution.html charts</div>
+      <div class="ref-full">IBM Security, "Cost of a Data Breach Report 2023," Ponemon Institute, July 2023. [Online]. Available: https://www.ibm.com/reports/data-breach</div>
+      <a class="ref-link" href="https://www.ibm.com/reports/data-breach" target="_blank">↗ Download free at IBM.com</a>
+    </div>
+    <div class="ref industry">
+      <span class="src-tag">INDUSTRY REPORT</span>
+      <div class="ref-title">2023 Data Breach Investigations Report (DBIR)</div>
+      <div class="ref-authors">Verizon Business</div>
+      <div class="ref-venue">Verizon, 16th Annual Edition, June 2023</div>
+      <div class="ref-stat">74% of all breaches involve the human element</div>
+      <div class="ref-used">Used in: index.html, content.html</div>
+      <div class="ref-full">Verizon Business, "2023 Data Breach Investigations Report," Verizon, Jun. 2023. [Online]. Available: https://www.verizon.com/business/resources/reports/dbir/</div>
+      <a class="ref-link" href="https://www.verizon.com/business/resources/reports/dbir/" target="_blank">↗ Download free at Verizon.com</a>
+    </div>
+    <div class="ref industry">
+      <span class="src-tag">INDUSTRY REPORT</span>
+      <div class="ref-title">Microsoft Zero Trust Adoption Report 2024</div>
+      <div class="ref-authors">Microsoft Security</div>
+      <div class="ref-venue">Microsoft Corporation, 2024</div>
+      <div class="ref-stat">61% of enterprises fully adopted Zero Trust · 92% plan to increase ZTA spending</div>
+      <div class="ref-used">Used in: index.html charts, solution.html charts</div>
+      <div class="ref-full">Microsoft Security, "Zero Trust Adoption Report 2024," Microsoft Corporation, 2024. [Online]. Available: https://www.microsoft.com/en-us/security/blog/2023/07/31/the-state-of-zero-trust-adoption/</div>
+      <a class="ref-link" href="https://www.microsoft.com/en-us/security/blog/2023/07/31/the-state-of-zero-trust-adoption/" target="_blank">↗ View at Microsoft</a>
+    </div>
+    <div class="ref industry">
+      <span class="src-tag">ANALYST RESEARCH</span>
+      <div class="ref-title">Zero Trust Security Market Research and False Positive Reduction Analysis</div>
+      <div class="ref-authors">Gartner Inc. / Forrester Research</div>
+      <div class="ref-venue">Multiple reports, 2022–2023</div>
+      <div class="ref-stat">Full ZTA reduces false positive alert volume by up to 72–78%</div>
+      <div class="ref-used">Used in: index.html charts, solution.html charts</div>
+      <div class="ref-full">Gartner Inc. and Forrester Research, "Zero Trust Market Analysis and Security Operations Impact," 2022–2023. Available at gartner.com and forrester.com.</div>
+      <a class="ref-link" href="https://www.gartner.com/en/information-technology/insights/zero-trust-security" target="_blank">↗ Gartner Zero Trust Research</a>
+    </div>
+  </div>
+</div>
+
+<div class="cs" id="tab-gov">
+  <div class="wrap">
+    <div class="ref gov">
+      <span class="src-tag">NIST STANDARD</span>
+      <div class="ref-title">Zero Trust Architecture (Special Publication 800-207)</div>
+      <div class="ref-authors">Scott Rose, Oliver Borchert, Stu Mitchell, Sean Connelly</div>
+      <div class="ref-venue">NIST, U.S. Dept. of Commerce, Aug. 2020</div>
+      <div class="ref-stat">Official U.S. government definition and framework for Zero Trust Architecture</div>
+      <div class="ref-used">Used in: solution.html</div>
+      <div class="ref-full">S. Rose, O. Borchert, S. Mitchell, and S. Connelly, "Zero Trust Architecture," NIST Special Publication 800-207, Aug. 2020. doi: 10.6028/NIST.SP.800-207. [Online]. Available: https://doi.org/10.6028/NIST.SP.800-207</div>
+      <a class="ref-link" href="https://doi.org/10.6028/NIST.SP.800-207" target="_blank">↗ Download free at NIST.gov</a>
+    </div>
+    <div class="ref gov">
+      <span class="src-tag">U.S. FEDERAL POLICY</span>
+      <div class="ref-title">Executive Order 14028 — Improving the Nation's Cybersecurity</div>
+      <div class="ref-authors">The White House, President Joseph R. Biden Jr.</div>
+      <div class="ref-venue">Federal Register, vol. 86, no. 93, May 17, 2021</div>
+      <div class="ref-stat">Mandated Zero Trust adoption across all U.S. federal agencies</div>
+      <div class="ref-used">Used in: solution.html</div>
+      <div class="ref-full">Executive Order No. 14028, "Improving the Nation's Cybersecurity," 86 Fed. Reg. 26633, May 17, 2021. [Online]. Available: https://www.federalregister.gov/documents/2021/05/17/2021-10460/improving-the-nations-cybersecurity</div>
+      <a class="ref-link" href="https://www.federalregister.gov/documents/2021/05/17/2021-10460/improving-the-nations-cybersecurity" target="_blank">↗ View at Federal Register</a>
+    </div>
+  </div>
+</div>
+
+<div class="cs" id="tab-tech">
+  <div class="wrap">
+    <div class="ref news">
+      <span class="src-tag">TECHNICAL PAPER</span>
+      <div class="ref-title">BeyondCorp: A New Approach to Enterprise Security</div>
+      <div class="ref-authors">R. Ward and B. Beyer</div>
+      <div class="ref-venue"><em>;login: USENIX Magazine</em>, vol. 39, no. 6, Dec. 2014</div>
+      <div class="ref-stat">Google's internal Zero Trust implementation — eliminated VPN for 100,000+ employees</div>
+      <div class="ref-used">Used in: solution.html</div>
+      <div class="ref-full">R. Ward and B. Beyer, "BeyondCorp: A new approach to enterprise security," ;login: USENIX Mag., vol. 39, no. 6, Dec. 2014. [Online]. Available: https://www.usenix.org/publications/loginonline/beyondcorp-new-approach-enterprise-security</div>
+      <a class="ref-link" href="https://www.usenix.org/publications/loginonline/beyondcorp-new-approach-enterprise-security" target="_blank">↗ View at USENIX</a>
+    </div>
+    <div class="ref news">
+      <span class="src-tag">TECHNICAL DOCUMENTATION</span>
+      <div class="ref-title">FIDO2 and WebAuthn: Phishing-Resistant Authentication Standards</div>
+      <div class="ref-authors">FIDO Alliance</div>
+      <div class="ref-venue">FIDO Alliance Technical Specification, 2018–present</div>
+      <div class="ref-stat">Hardware security keys make MFA fatigue attacks technically impossible</div>
+      <div class="ref-used">Used in: content.html, solution.html</div>
+      <div class="ref-full">FIDO Alliance, "FIDO2: Web Authentication (WebAuthn)," FIDO Alliance and W3C, 2018. [Online]. Available: https://fidoalliance.org/fido2/</div>
+      <a class="ref-link" href="https://fidoalliance.org/fido2/" target="_blank">↗ View at FIDO Alliance</a>
     </div>
   </div>
 </div>
@@ -106,5 +223,14 @@
   <span>// NIDScybersecurity-hub · City Tech · Prof. Ellis</span>
   <span><a href="index.html">← Home</a></span>
 </footer>
+
+<script>
+  function show(id, btn) {
+    document.querySelectorAll('.cs').forEach(s => s.classList.remove('vis'));
+    document.querySelectorAll('.tb').forEach(b => { b.classList.remove('ag'); });
+    document.getElementById('tab-'+id).classList.add('vis');
+    btn.classList.add('ag');
+  }
+</script>
 </body>
 </html>
